@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 /*
     reads values from sensors and sends them with timestamps
     to the server

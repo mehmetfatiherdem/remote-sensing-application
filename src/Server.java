@@ -27,7 +27,7 @@ public class Server
             in = new DataInputStream(
                     new BufferedInputStream(socket.getInputStream()));
 
-            String line = "";
+            String line;
 
             while (true)
             {
