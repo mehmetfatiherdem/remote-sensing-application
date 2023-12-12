@@ -1,6 +1,4 @@
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /*
     connected to gateway via UDP
@@ -14,40 +12,16 @@ public class HumiditySensor {
     private final String alive = "ALIVE";
 
     public HumiditySensor(){}
-
-    public void sendHumidity(Gateway gateway){
-
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                int humidity = 0;
-                Random rand = new Random();
-                humidity = rand.nextInt(minHumidity, maxHumidity);
-                lastMeasuredHumidity = humidity;
-                if(humidity>80){
-                    // TODO: send "humidity" with timestamp to Gateway
-
-                }
-            }
-        };
-
-        Timer timer = new Timer();
-
-        timer.schedule(task, 0, 1000);
-
+    public int generateHumidity(){
+        Random rand = new Random();
+        int humidity = rand.nextInt(minHumidity, maxHumidity);
+        lastMeasuredHumidity = humidity;
+        return humidity;
     }
-
-    public void sendAlive(Gateway gateway){
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                //TODO: send "alive" message to gateway
-            }
-        };
-
-        Timer timer = new Timer();
-        timer.schedule(task, 0, 3000);
-
+    public boolean isGreaterThanThreshold(int humidity){
+        return humidity > 80;
+    }
+    public void sendAlive(){//TODO: send "alive" message to gateway
     }
 
 }

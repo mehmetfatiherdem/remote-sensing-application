@@ -17,21 +17,5 @@ import java.util.ArrayList;
 public class Gateway {
     public Gateway(){}
 
-    public void listenSensor(ArrayList<SensorMessage> msg){
-
-        for (SensorMessage m: msg) {
-            switch (m.getSourceType()) {
-                case TEMPERATURE -> {
-                    System.out.println("Temp sensor sensed => " + m.getVal());
-                    //TODO:
-                }
-                case HUMIDITY -> System.out.println("Humidity sensor sensed => " + m.getVal() + " or => " + m.getMsg());
-                default -> System.out.println("invalid sensor");
-
-                //TODO: implement a log functionality
-            }
-        }
-
-    }
 
 }
