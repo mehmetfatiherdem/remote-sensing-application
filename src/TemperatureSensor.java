@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.Random;
 
 /*
@@ -16,5 +17,8 @@ public class TemperatureSensor {
         return temp;
     }
 
+    public SensorMessage generateMessage(){
+        return new SensorMessage(SENSOR_TYPE.TEMPERATURE, generateTemp(), new Date());
+    }
 
 }
