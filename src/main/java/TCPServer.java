@@ -1,4 +1,4 @@
-// A Java program for a Server
+package main.java;// A Java program for a Server
 import java.net.*;
 import java.io.*;
 
