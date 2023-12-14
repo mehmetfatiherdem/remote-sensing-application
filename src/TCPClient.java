@@ -24,7 +24,7 @@ public class TCPClient {
             public void run() {
                     try {
                         var temp = tempSensor.generateMessage();
-                        out.writeUTF(temp.getVal() + " at " + temp.getTimeStamp());
+                        out.writeUTF("Temperature Sensor: " + temp.getVal() + " at " + temp.getTimeStamp());
                     } catch (IOException i) {
                         System.out.println(i);
                     }

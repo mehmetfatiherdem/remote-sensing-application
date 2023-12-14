@@ -21,7 +21,8 @@ public class HumiditySensor {
     public boolean isGreaterThanThreshold(int humidity){
         return humidity > 80;
     }
-    public void sendAlive(){//TODO: send "alive" message to gateway
+    public String generateAliveMessage(){
+        return  alive;
     }
 
 }

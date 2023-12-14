@@ -2,7 +2,7 @@
 import java.net.*;
 import java.io.*;
 
-public class Server
+public class TCPServer
 {
     //initialize socket and input stream
     private Socket socket;
@@ -10,7 +10,7 @@ public class Server
     private DataInputStream in;
 
     // constructor with port
-    public Server(int port)
+    public TCPServer(int port)
     {
         // starts server and waits for a connection
         try
@@ -48,11 +48,6 @@ public class Server
         {
             System.out.println(i);
         }
-    }
-
-    public static void main(String[] args) {
-        Server server = new Server(5000);
-
     }
 
 }
