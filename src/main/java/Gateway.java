@@ -2,7 +2,6 @@ package main.java;
 
 import java.io.IOException;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 
 /*
     reads values from sensors and sends them with timestamps
