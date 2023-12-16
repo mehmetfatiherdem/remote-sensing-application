@@ -27,4 +27,15 @@ public class HumiditySensor {
         // dealing with strings makes our life harder
     }
 
+    public int getMinHumidity() {
+        return minHumidity;
+    }
+
+    public int getMaxHumidity() {
+        return maxHumidity;
+    }
+
+    public int getLastMeasuredHumidity() {
+        return lastMeasuredHumidity;
+    }
 }

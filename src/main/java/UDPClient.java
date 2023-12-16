@@ -8,15 +8,14 @@ import java.util.TimerTask;
 public class UDPClient {
     private DatagramSocket socket;
     private InetAddress address;
-
     private int port;
     private byte[] buf;
     private HumiditySensor humiditySensor;
 
-    public UDPClient(int port, HumiditySensor humiditySensor) throws SocketException, UnknownHostException {
+    public UDPClient(HumiditySensor humiditySensor, InetAddress address, int port) throws SocketException, UnknownHostException {
         this.port = port;
         socket = new DatagramSocket();
-        address = InetAddress.getLocalHost();
+        this.address = address;
         this.humiditySensor = humiditySensor;
     }
 

@@ -23,4 +23,15 @@ public class TemperatureSensor {
         return new SensorMessage(SENSOR_TYPE.TEMPERATURE, generateTemp(), new Date());
     }
 
+    public int getMinTemp() {
+        return minTemp;
+    }
+
+    public int getMaxTemp() {
+        return maxTemp;
+    }
+
+    public int getLastMeasuredTemp() {
+        return lastMeasuredTemp;
+    }
 }

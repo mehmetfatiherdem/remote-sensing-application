@@ -5,26 +5,16 @@ import java.util.Date;
 public class SensorMessage {
 
     private SENSOR_TYPE sourceType;
-    private int val;
-    private String msg;
+    private int msg;
     private Date timeStamp;
 
-    public SensorMessage(SENSOR_TYPE sourceType, int val, Date timeStamp){
+    public SensorMessage(SENSOR_TYPE sourceType, int msg, Date timeStamp){
         this.sourceType = sourceType;
-        this.val = val;
+        this.msg = msg;
         this.timeStamp = timeStamp;
     }
 
-    public SensorMessage(SENSOR_TYPE sourceType, String msg){
-        this.sourceType = sourceType;
-        this.msg = msg;
-    }
-
-    public int getVal() {
-        return val;
-    }
-
-    public String getMsg() {
+    public int getMsg() {
         return msg;
     }
 

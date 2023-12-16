@@ -18,15 +18,39 @@ import java.io.IOException;
 
  */
 public class Gateway {
+    private static Gateway instance;
+    private int tcpPort;
+    private int udpPort;
+
     public Gateway(int tcpPort, int udpPort) throws IOException {
+
+        this.tcpPort = tcpPort;
+        this.udpPort = udpPort;
 
         UDPClientHandler udpClientHandler = new UDPClientHandler(udpPort);
         udpClientHandler.start();
 
-        // TCP connection between Temperature Sensor and Gateway
         TCPClientHandler tcpClientHandler = new TCPClientHandler(tcpPort);
         tcpClientHandler.start();
 
     }
 
+    public static Gateway getInstance(int tcpPort, int udpPort) throws IOException {
+        if (instance == null) {
+            instance = new Gateway(tcpPort, udpPort);
+        }
+        return instance;
+    }
+
+    public static Gateway getInstance() {
+        return instance;
+    }
+
+    public int getTcpPort() {
+        return tcpPort;
+    }
+
+    public int getUdpPort() {
+        return udpPort;
+    }
 }
