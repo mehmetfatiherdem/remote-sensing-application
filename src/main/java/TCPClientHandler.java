@@ -2,24 +2,21 @@ package main.java;// A Java program for a Server
 import java.net.*;
 import java.io.*;
 
-public class TCPServer
-{
+public class TCPClientHandler extends Thread {
     //initialize socket and input stream
     private Socket socket;
     private ServerSocket server;
     private DataInputStream in;
+    public TCPClientHandler(int port) throws IOException {
+        server = new ServerSocket(port);
+        System.out.println("Server started");
 
-    // constructor with port
-    public TCPServer(int port)
-    {
+        System.out.println("Waiting for a client ...");
+    }
+
+    public void run(){
         // starts server and waits for a connection
-        try
-        {
-            server = new ServerSocket(port);
-            System.out.println("Server started");
-
-            System.out.println("Waiting for a client ...");
-
+        try {
             socket = server.accept();
             System.out.println("Client accepted");
 
@@ -29,25 +26,24 @@ public class TCPServer
 
             String line;
 
-            while (true)
-            {
-                try
-                {
+            while (true) {
+                try {
                     line = in.readUTF();
                     System.out.println(line);
 
                 }
-                catch(IOException i)
-                {
+                catch(IOException i) {
                     System.out.println(i);
                 }
             }
 
         }
-        catch(IOException i)
-        {
+        catch(IOException i) {
             System.out.println(i);
         }
     }
+
+    // constructor with port
+
 
 }

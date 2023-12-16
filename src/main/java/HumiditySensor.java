@@ -8,10 +8,9 @@ import java.util.Random;
 
  */
 public class HumiditySensor {
-    private final int minHumidity = 20;
-    private final int maxHumidity = 30;
+    private final int minHumidity = 40;
+    private final int maxHumidity = 90;
     private int lastMeasuredHumidity;
-    private final String alive = "ALIVE";
 
     public HumiditySensor(){}
     public int generateHumidity(){
@@ -23,8 +22,9 @@ public class HumiditySensor {
     public boolean isGreaterThanThreshold(int humidity){
         return humidity > 80;
     }
-    public String generateAliveMessage(){
-        return  alive;
+    public int generateAliveMessage(){
+        return -1; // -1 means alive in our context since we will be sending byte[] in UDP connections
+        // dealing with strings makes our life harder
     }
 
 }
