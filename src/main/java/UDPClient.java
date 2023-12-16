@@ -9,47 +9,27 @@ public class UDPClient {
     private DatagramSocket socket;
     private InetAddress address;
     private int port;
+    private Sensor sensor;
     private byte[] buf;
-    private HumiditySensor humiditySensor;
 
-    public UDPClient(HumiditySensor humiditySensor, InetAddress address, int port) throws SocketException, UnknownHostException {
+    public UDPClient(Sensor sensor, InetAddress address, int port) throws SocketException, UnknownHostException {
         this.port = port;
         socket = new DatagramSocket();
         this.address = address;
-        this.humiditySensor = humiditySensor;
+        this.sensor = sensor;
     }
 
+
     public void sendMessage() {
+        TimerTask sendValueTask = new TimerTask() {
+            @Override
+            public void run() {
 
-            TimerTask sendValueTask = new TimerTask() {
-                @Override
-                public void run() {
+                var humidity = sensor.generateMessage();
 
+                if (((HumiditySensor)sensor).isGreaterThanThreshold(humidity.getVal())) {
 
-                    var humidity = humiditySensor.generateMessage();
-
-                    if (humiditySensor.isGreaterThanThreshold(humidity.getVal())) {
-
-                        buf = humidity.getByteArr();
-
-                        DatagramPacket packet
-                                = new DatagramPacket(buf, buf.length, address, port);
-                        try {
-                            socket.send(packet);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                }
-
-
-
-            };
-
-            TimerTask sendAliveTask = new TimerTask() {
-                @Override
-                public void run() {
-                    buf = humiditySensor.generateAliveMessage().getByteArr();
+                    buf = humidity.getByteArr();
 
                     DatagramPacket packet
                             = new DatagramPacket(buf, buf.length, address, port);
@@ -58,17 +38,35 @@ public class UDPClient {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-
                 }
-            };
+            }
+
+        };
+        TimerTask sendAliveTask = new TimerTask() {
+            @Override
+            public void run() {
+                buf = ((HumiditySensor)sensor).generateAliveMessage().getByteArr();
+
+                DatagramPacket packet = new DatagramPacket(buf, buf.length, address, port);
+                try {
+                    socket.send(packet);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        };
 
 
-            Timer aliveTimer = new Timer();
-            aliveTimer.schedule(sendAliveTask, 0, 3000);
-            aliveTimer.schedule(sendValueTask, 0, 1000);
+        Timer timer = new Timer();
+        timer.schedule(sendAliveTask, 0, 3000);
+        timer.schedule(sendValueTask, 0, 1000);
+
 
 
         //TODO: socket close logic??
 
     }
+
+
 }

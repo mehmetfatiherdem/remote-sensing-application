@@ -9,13 +9,13 @@ import java.util.TimerTask;
 
 public class TCPClient {
     private Socket socket;
-    private TemperatureSensor tempSensor;
+    private Sensor sensor;
     private InetAddress address;
     private int port;
-    public TCPClient(TemperatureSensor tempSensor, InetAddress address, int port) throws IOException {
+    public TCPClient(Sensor sensor, InetAddress address, int port) throws IOException {
         this.address = address;
         this.port = port;
-        this.tempSensor = tempSensor;
+        this.sensor = sensor;
 
         socket = new Socket(address, port);
         System.out.println("Connected");
@@ -34,7 +34,7 @@ public class TCPClient {
             @Override
             public void run() {
                 try {
-                    var temp = tempSensor.generateMessage();
+                    var temp = sensor.generateMessage();
                     out.writeUTF("Temperature Sensor: " + temp.getVal() + " at " + temp.getTimeStamp() + " on port " + socket.getPort());
                 } catch (IOException i) {
                     System.out.println(i);
@@ -53,8 +53,8 @@ public class TCPClient {
         return socket;
     }
 
-    public TemperatureSensor getTempSensor() {
-        return tempSensor;
+    public Sensor getSensor() {
+        return sensor;
     }
 
     public InetAddress getAddress() {
