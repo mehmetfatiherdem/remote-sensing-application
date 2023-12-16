@@ -26,17 +26,11 @@ public class UDPClient {
                 public void run() {
 
 
-                    int humidity = humiditySensor.generateHumidity();
+                    var humidity = humiditySensor.generateMessage();
 
-                    if (humiditySensor.isGreaterThanThreshold(humidity)) {
-                        // like I wasn't virgin enough :_(
-                        buf = new byte[]{
-                                (byte) ((humidity & 0xFF000000) >> 24),
-                                (byte) ((humidity & 0x00FF0000) >> 16),
-                                (byte) ((humidity & 0x0000FF00) >> 8),
-                                (byte) ((humidity & 0x000000FF)),
+                    if (humiditySensor.isGreaterThanThreshold(humidity.getVal())) {
 
-                        };
+                        buf = humidity.getByteArr();
 
                         DatagramPacket packet
                                 = new DatagramPacket(buf, buf.length, address, port);
@@ -46,33 +40,16 @@ public class UDPClient {
                             throw new RuntimeException(e);
                         }
                     }
-
-
                 }
 
 
 
             };
 
-            Timer humidityTimer = new Timer();
-            //humidityTimer.schedule(sendValueTask, 0, 1000);
-
-
-
             TimerTask sendAliveTask = new TimerTask() {
                 @Override
                 public void run() {
-                    int aliveMsg = humiditySensor.generateAliveMessage();
-
-                    buf = new byte[]{
-
-                            (byte) ((aliveMsg & 0xFF000000) >> 24),
-                            (byte) ((aliveMsg & 0x00FF0000) >> 16),
-                            (byte) ((aliveMsg & 0x0000FF00) >> 8),
-                            (byte) ((aliveMsg & 0x000000FF)),
-
-
-                    };
+                    buf = humiditySensor.generateAliveMessage().getByteArr();
 
                     DatagramPacket packet
                             = new DatagramPacket(buf, buf.length, address, port);

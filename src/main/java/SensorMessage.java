@@ -3,23 +3,27 @@ package main.java;
 import java.util.Date;
 
 public class SensorMessage {
-
-    private SENSOR_TYPE sourceType;
-    private int msg;
+    private int val;
     private Date timeStamp;
 
-    public SensorMessage(SENSOR_TYPE sourceType, int msg, Date timeStamp){
-        this.sourceType = sourceType;
-        this.msg = msg;
+    public SensorMessage(int val, Date timeStamp){
+        this.val = val;
         this.timeStamp = timeStamp;
     }
 
-    public int getMsg() {
-        return msg;
+    public byte[] getByteArr(){
+        StringBuilder str = new StringBuilder();
+        if(val == -1){
+            str.append("ALIVE at ").append(timeStamp);
+        }else{
+            str.append(val).append(" at ").append(timeStamp);
+        }
+
+        return str.toString().getBytes();
     }
 
-    public SENSOR_TYPE getSourceType() {
-        return sourceType;
+    public int getVal() {
+        return val;
     }
 
     public Date getTimeStamp() {

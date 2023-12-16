@@ -9,20 +9,19 @@ public class TCPClientHandler extends Thread {
     private DataInputStream in;
     public TCPClientHandler(int port) throws IOException {
         server = new ServerSocket(port);
-        System.out.println("Server started");
+        System.out.println("TCP Server started");
 
-        System.out.println("Waiting for a client ...");
+        System.out.println("Waiting for a TCP client ...");
     }
 
     public void run(){
         // starts server and waits for a connection
         try {
             socket = server.accept();
-            System.out.println("Client accepted");
+            System.out.println("TCP Client accepted");
 
             // takes input from the client socket
-            in = new DataInputStream(
-                    new BufferedInputStream(socket.getInputStream()));
+            in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 
             String line;
 
