@@ -2,9 +2,8 @@ package main.java;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.TimerTask;
 
-public class TCPTimerTask extends TimerTask {
+public class TCPTimerTask implements Runnable {
     private Sensor sensor;
     DataOutputStream out;
     public TCPTimerTask(Sensor sensor, DataOutputStream out){

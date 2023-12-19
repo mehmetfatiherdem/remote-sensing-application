@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.TimerTask;
 
-public class UDPTimerTask extends TimerTask {
+public class UDPTimerTask implements Runnable {
     private Sensor sensor;
     private HUMIDITY_MESSAGE msg;
     private DatagramSocket socket;

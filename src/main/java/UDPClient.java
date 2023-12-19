@@ -1,7 +1,6 @@
 package main.java;
 
 import java.net.*;
-import java.util.Timer;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -25,9 +24,10 @@ public class UDPClient {
         UDPTimerTask sendValueTask = new UDPTimerTask(sensor, HUMIDITY_MESSAGE.VALUE, socket, address, port);
         UDPTimerTask sendAliveTask = new UDPTimerTask(sensor, HUMIDITY_MESSAGE.ALIVE, socket, address, port);
 
-        Timer timer = new Timer();
-        timer.schedule(sendValueTask, 0, 1000);
-        timer.schedule(sendAliveTask, 0, 3000);
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
+
+        executor.scheduleAtFixedRate(sendValueTask, 0, 1, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(sendAliveTask, 0, 3, TimeUnit.SECONDS);
 
 
         //TODO: socket close logic??

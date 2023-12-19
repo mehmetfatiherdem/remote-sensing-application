@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Timer;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class TCPClient {
     private Socket socket;
@@ -31,8 +33,9 @@ public class TCPClient {
 
         TCPTimerTask task = new TCPTimerTask(sensor, out);
 
-        Timer timer = new Timer();
-        timer.schedule(task, 0, 1000);
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
+
+        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
 
         //Close connection logic??
     }
