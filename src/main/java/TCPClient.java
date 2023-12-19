@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class TCPClient {
     private Socket socket;
@@ -30,21 +31,11 @@ public class TCPClient {
             return;
         }
 
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    var temp = sensor.generateMessage();
-                    out.writeUTF("Temperature Sensor: " + temp.getVal() + " at " + temp.getTimeStamp() + " on port " + socket.getPort());
-                } catch (IOException i) {
-                    System.out.println(i);
-                }
+        TCPTimerTask task = new TCPTimerTask(sensor, out);
 
-            }
-        };
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        Timer timer = new Timer();
-        timer.schedule(task, 0, 1000);
+        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
 
         //Close connection logic??
     }
