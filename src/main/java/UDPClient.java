@@ -25,17 +25,10 @@ public class UDPClient {
         UDPTimerTask sendValueTask = new UDPTimerTask(sensor, HUMIDITY_MESSAGE.VALUE, socket, address, port);
         UDPTimerTask sendAliveTask = new UDPTimerTask(sensor, HUMIDITY_MESSAGE.ALIVE, socket, address, port);
 
-        ScheduledThreadPoolExecutor threadPool
-                = new ScheduledThreadPoolExecutor(2);
-
-        threadPool.scheduleAtFixedRate(sendValueTask, 0, 1, TimeUnit.SECONDS);
-        threadPool.scheduleAtFixedRate(sendAliveTask, 0, 3, TimeUnit.SECONDS);
-
         Timer timer = new Timer();
-        timer.schedule(sendAliveTask, 0, 3000);
         timer.schedule(sendValueTask, 0, 1000);
+        timer.schedule(sendAliveTask, 0, 3000);
 
-        threadPool.shutdown();
 
         //TODO: socket close logic??
 

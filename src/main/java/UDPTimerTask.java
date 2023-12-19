@@ -12,7 +12,7 @@ public class UDPTimerTask extends TimerTask {
     private DatagramSocket socket;
     private InetAddress address;
     private int port;
-    private byte[] buf = new byte[0];
+    private byte[] buf;
     public UDPTimerTask(Sensor sensor, HUMIDITY_MESSAGE msg, DatagramSocket socket, InetAddress address, int port){
         this.sensor = sensor;
         this.msg = msg;
@@ -29,6 +29,9 @@ public class UDPTimerTask extends TimerTask {
             var humidity = sensor.generateMessage();
             if (((HumiditySensor)sensor).isGreaterThanThreshold(humidity.getVal())) {
                 buf = humidity.getByteArr();
+            }else{
+                return; // When buf this case holds to be true it breaks everything
+                        // due to buf being null so I just return to be safe
             }
         }
 
