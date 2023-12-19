@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class TCPClient {
     private Socket socket;
@@ -30,18 +29,7 @@ public class TCPClient {
             return;
         }
 
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    var temp = sensor.generateMessage();
-                    out.writeUTF("Temperature Sensor: " + temp.getVal() + " at " + temp.getTimeStamp() + " on port " + socket.getPort());
-                } catch (IOException i) {
-                    System.out.println(i);
-                }
-
-            }
-        };
+        TCPTimerTask task = new TCPTimerTask(sensor, out);
 
         Timer timer = new Timer();
         timer.schedule(task, 0, 1000);

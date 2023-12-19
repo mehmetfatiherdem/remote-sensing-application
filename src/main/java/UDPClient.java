@@ -1,9 +1,9 @@
 package main.java;
 
-import java.io.IOException;
 import java.net.*;
 import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class UDPClient {
     private DatagramSocket socket;
@@ -21,48 +21,21 @@ public class UDPClient {
 
 
     public void sendMessage() {
-        TimerTask sendValueTask = new TimerTask() {
-            @Override
-            public void run() {
 
-                var humidity = sensor.generateMessage();
+        UDPTimerTask sendValueTask = new UDPTimerTask(sensor, HUMIDITY_MESSAGE.VALUE, socket, address, port);
+        UDPTimerTask sendAliveTask = new UDPTimerTask(sensor, HUMIDITY_MESSAGE.ALIVE, socket, address, port);
 
-                if (((HumiditySensor)sensor).isGreaterThanThreshold(humidity.getVal())) {
+        ScheduledThreadPoolExecutor threadPool
+                = new ScheduledThreadPoolExecutor(2);
 
-                    buf = humidity.getByteArr();
-
-                    DatagramPacket packet
-                            = new DatagramPacket(buf, buf.length, address, port);
-                    try {
-                        socket.send(packet);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-
-        };
-        TimerTask sendAliveTask = new TimerTask() {
-            @Override
-            public void run() {
-                buf = ((HumiditySensor)sensor).generateAliveMessage().getByteArr();
-
-                DatagramPacket packet = new DatagramPacket(buf, buf.length, address, port);
-                try {
-                    socket.send(packet);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-            }
-        };
-
+        threadPool.scheduleAtFixedRate(sendValueTask, 0, 1, TimeUnit.SECONDS);
+        threadPool.scheduleAtFixedRate(sendAliveTask, 0, 3, TimeUnit.SECONDS);
 
         Timer timer = new Timer();
         timer.schedule(sendAliveTask, 0, 3000);
         timer.schedule(sendValueTask, 0, 1000);
 
-
+        threadPool.shutdown();
 
         //TODO: socket close logic??
 

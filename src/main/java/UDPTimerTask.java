@@ -1,0 +1,42 @@
+package main.java;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.util.TimerTask;
+
+public class UDPTimerTask extends TimerTask {
+    private Sensor sensor;
+    private HUMIDITY_MESSAGE msg;
+    private DatagramSocket socket;
+    private InetAddress address;
+    private int port;
+    private byte[] buf = new byte[0];
+    public UDPTimerTask(Sensor sensor, HUMIDITY_MESSAGE msg, DatagramSocket socket, InetAddress address, int port){
+        this.sensor = sensor;
+        this.msg = msg;
+        this.socket = socket;
+        this.address = address;
+        this.port = port;
+    }
+    @Override
+    public void run() {
+        if(msg == HUMIDITY_MESSAGE.ALIVE){
+            buf = ((HumiditySensor)sensor).generateAliveMessage().getByteArr();
+
+        } else if(msg == HUMIDITY_MESSAGE.VALUE){
+            var humidity = sensor.generateMessage();
+            if (((HumiditySensor)sensor).isGreaterThanThreshold(humidity.getVal())) {
+                buf = humidity.getByteArr();
+            }
+        }
+
+        DatagramPacket packet = new DatagramPacket(buf, buf.length, address, port);
+        try {
+            socket.send(packet);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
