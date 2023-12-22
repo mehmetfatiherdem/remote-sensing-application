@@ -23,6 +23,8 @@ public abstract class Sensor {
         return new SensorMessage(generateValue(), new Date());
     }
 
+    public abstract SENSOR_TYPE getType();
+
     public int getMinVal() {
         return minVal;
     }

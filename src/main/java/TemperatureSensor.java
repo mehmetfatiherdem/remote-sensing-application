@@ -10,4 +10,9 @@ public class TemperatureSensor extends Sensor{
         super(minVal, maxVal);
     }
 
+    @Override
+    public SENSOR_TYPE getType() {
+        return SENSOR_TYPE.TEMPERATURE;
+    }
+
 }

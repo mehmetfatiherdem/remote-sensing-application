@@ -12,6 +12,12 @@ public class HumiditySensor extends Sensor{
     public HumiditySensor(int minVal, int maxVal){
         super(minVal, maxVal);
     }
+
+    @Override
+    public SENSOR_TYPE getType() {
+        return SENSOR_TYPE.HUMIDITY;
+    }
+
     public boolean isGreaterThanThreshold(int humidity){
         return humidity > 80;
     }

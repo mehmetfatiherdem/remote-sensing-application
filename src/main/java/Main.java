@@ -6,12 +6,8 @@ import java.net.InetAddress;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        // 2 different ports for UDP and TCP
-        int udpPort = 4445;
-        int tcpPort = 5000;
-
         // initialize the gateway
-        Gateway gateway = Gateway.getInstance(tcpPort, udpPort);
+        Gateway gateway = Gateway.getInstance(Constants.gatewaySensorTCPPort, Constants.udpPort);
 
         // min-max temp/humidity values
         int minTemp = 20;
@@ -27,8 +23,8 @@ public class Main {
         var localHostAddress = InetAddress.getLocalHost();
 
         //  initialize the client instances with the corresponding sensors
-        UDPClient humiditySensorClient = new UDPClient(humiditySensor, localHostAddress, udpPort);
-        TCPClient tempSensorClient = new TCPClient(tempSensor, localHostAddress, tcpPort);
+        UDPClient humiditySensorClient = new UDPClient(humiditySensor, localHostAddress, Constants.udpPort);
+        TCPClient tempSensorClient = new TCPClient(tempSensor, localHostAddress, Constants.gatewaySensorTCPPort);
 
         // start sending the messages from the clients
         tempSensorClient.sendMessage();
