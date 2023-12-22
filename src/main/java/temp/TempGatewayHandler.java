@@ -1,4 +1,4 @@
-package main.java.tcp;
+package main.java.temp;
 
 import main.java.sensor.Sensor;
 
@@ -9,18 +9,18 @@ import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class TCPClient {
+public class TempGatewayHandler {
     private Socket socket;
     private Sensor sensor;
     private InetAddress address;
     private int port;
-    public TCPClient(Sensor sensor, InetAddress address, int port) throws IOException {
+    public TempGatewayHandler(Sensor sensor, InetAddress address, int port) throws IOException {
         this.address = address;
         this.port = port;
         this.sensor = sensor;
 
         socket = new Socket(address, port);
-        System.out.println("Connected");
+        System.out.println(sensor.getType().getName() + " Connected with TCP");
     }
 
     public void sendMessage(){
@@ -32,7 +32,7 @@ public class TCPClient {
             return;
         }
 
-        TCPTimerTask task = new TCPTimerTask(sensor, out);
+        TempSensorTimerTask task = new TempSensorTimerTask(sensor, out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 

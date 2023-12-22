@@ -1,7 +1,5 @@
-package main.java.udp;
+package main.java.humidity;
 
-import main.java.HUMIDITY_MESSAGE;
-import main.java.sensor.HumiditySensor;
 import main.java.sensor.Sensor;
 
 import java.io.IOException;
@@ -9,14 +7,14 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class UDPTimerTask implements Runnable {
+public class HumiditySensorTimerTask implements Runnable {
     private Sensor sensor;
     private HUMIDITY_MESSAGE msg;
     private DatagramSocket socket;
     private InetAddress address;
     private int port;
     private byte[] buf;
-    public UDPTimerTask(Sensor sensor, HUMIDITY_MESSAGE msg, DatagramSocket socket, InetAddress address, int port){
+    public HumiditySensorTimerTask(Sensor sensor, HUMIDITY_MESSAGE msg, DatagramSocket socket, InetAddress address, int port){
         this.sensor = sensor;
         this.msg = msg;
         this.socket = socket;

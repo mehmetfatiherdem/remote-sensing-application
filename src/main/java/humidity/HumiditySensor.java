@@ -1,4 +1,8 @@
-package main.java.sensor;
+package main.java.humidity;
+
+import main.java.sensor.SENSOR_TYPE;
+import main.java.sensor.Sensor;
+import main.java.sensor.SensorMessage;
 
 import java.util.Date;
 
@@ -7,7 +11,7 @@ import java.util.Date;
 
 
  */
-public class HumiditySensor extends Sensor{
+public class HumiditySensor extends Sensor {
 
     public HumiditySensor(int minVal, int maxVal){
         super(minVal, maxVal);

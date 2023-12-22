@@ -1,4 +1,6 @@
-package main.java.udp;
+package main.java.gateway;
+
+import main.java.utils.Helpers;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -6,13 +8,13 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 
 
-public class UDPClientHandler extends Thread{
+public class GatewayHumidityHandler extends Thread{
     private DatagramSocket socket;
     private byte[] buf = new byte[65535];
 
-    public UDPClientHandler(int port) throws SocketException {
+    public GatewayHumidityHandler(int port) throws SocketException {
         socket = new DatagramSocket(port);
-        System.out.println("UDP server init at port " + socket.getLocalPort());
+        System.out.println("Gateway datagram socket waiting for UDP sensor client at port " + socket.getLocalPort());
     }
 
     public void run() {
@@ -22,7 +24,7 @@ public class UDPClientHandler extends Thread{
 
             try {
                 socket.receive(packet);
-                System.out.println(byteToStr(buf));
+                System.out.println(Helpers.ByteToStr(buf));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -32,19 +34,6 @@ public class UDPClientHandler extends Thread{
             //send to serve logic here??
         }
         //TODO: socket close here?
-    }
-
-    public StringBuilder byteToStr(byte[] a) {
-        if (a == null) return null;
-
-        StringBuilder ret = new StringBuilder();
-
-        int i = 0;
-        while(a[i] != 0){
-            ret.append((char)a[i++]);
-        }
-
-        return ret;
     }
 
 }

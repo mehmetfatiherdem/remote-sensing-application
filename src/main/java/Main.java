@@ -1,9 +1,11 @@
 package main.java;
 
-import main.java.sensor.HumiditySensor;
-import main.java.sensor.TemperatureSensor;
-import main.java.tcp.TCPClient;
-import main.java.udp.UDPClient;
+import main.java.gateway.Gateway;
+import main.java.humidity.HumiditySensor;
+import main.java.temp.TemperatureSensor;
+import main.java.server.Server;
+import main.java.temp.TempGatewayHandler;
+import main.java.humidity.HumidityGatewayHandler;
 import main.java.utils.Constants;
 
 import java.io.IOException;
@@ -12,8 +14,11 @@ import java.net.InetAddress;
 public class Main {
     public static void main(String[] args) throws IOException {
 
+        // initialize server
+        Server server = Server.getInstance();
+
         // initialize the gateway
-        Gateway gateway = Gateway.getInstance(Constants.gatewaySensorTCPPort, Constants.udpPort);
+        Gateway gateway = Gateway.getInstance();
 
         // min-max temp/humidity values
         int minTemp = 20;
@@ -29,8 +34,8 @@ public class Main {
         var localHostAddress = InetAddress.getLocalHost();
 
         //  initialize the client instances with the corresponding sensors
-        UDPClient humiditySensorClient = new UDPClient(humiditySensor, localHostAddress, Constants.udpPort);
-        TCPClient tempSensorClient = new TCPClient(tempSensor, localHostAddress, Constants.gatewaySensorTCPPort);
+        HumidityGatewayHandler humiditySensorClient = new HumidityGatewayHandler(humiditySensor, localHostAddress, Constants.gatewaySensorUDPPort);
+        TempGatewayHandler tempSensorClient = new TempGatewayHandler(tempSensor, localHostAddress, Constants.gatewaySensorTCPPort);
 
         // start sending the messages from the clients
         tempSensorClient.sendMessage();

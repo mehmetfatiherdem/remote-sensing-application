@@ -1,26 +1,24 @@
-package main.java.tcp;// A Java program for a Server
+package main.java.gateway;
 import java.net.*;
 import java.io.*;
 
-public class TCPClientHandler extends Thread {
-    //initialize socket and input stream
+public class GatewayTempHandler extends Thread {
     private Socket socket;
     private ServerSocket server;
     private DataInputStream in;
-    public TCPClientHandler(int port) throws IOException {
+    public GatewayTempHandler(int port) throws IOException {
         server = new ServerSocket(port);
-        System.out.println("TCP Server started");
 
-        System.out.println("Waiting for a TCP client ...");
+        System.out.println("Gateway Waiting for a TCP client at port " + server.getLocalPort());
     }
 
     public void run(){
-        // starts server and waits for a connection
+
         try {
             socket = server.accept();
-            System.out.println("TCP Client accepted");
+            System.out.println("Gateway accepted TCP Client at port " + server.getLocalPort());
 
-            // takes input from the client socket
+
             in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 
             String line;
@@ -42,7 +40,6 @@ public class TCPClientHandler extends Thread {
         }
     }
 
-    // constructor with port
 
 
 }
