@@ -1,6 +1,7 @@
 package main.java.temp;
 
 import main.java.sensor.Sensor;
+import main.java.sensor.SensorToGatewaySensorInfoTimerTask;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,12 +10,12 @@ import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class TempGatewayHandler {
+public class TempCommunicationHandler {
     private Socket socket;
     private Sensor sensor;
     private InetAddress address;
     private int port;
-    public TempGatewayHandler(Sensor sensor, InetAddress address, int port) throws IOException {
+    public TempCommunicationHandler(Sensor sensor, InetAddress address, int port) throws IOException {
         this.address = address;
         this.port = port;
         this.sensor = sensor;
@@ -33,8 +34,12 @@ public class TempGatewayHandler {
         }
 
         TempSensorTimerTask task = new TempSensorTimerTask(sensor, out);
+        SensorToGatewaySensorInfoTimerTask sensorToGatewaySensorInfoTimerTask =
+                new SensorToGatewaySensorInfoTimerTask(sensor, out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
+
+        executor.schedule(sensorToGatewaySensorInfoTimerTask, 0, TimeUnit.SECONDS);
 
         executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
 

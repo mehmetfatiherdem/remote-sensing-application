@@ -20,9 +20,6 @@ public class ServerCommunicationHandler extends Thread{
         server = new ServerSocket(port);
         System.out.println("Server waiting for a TCP Gateway at port " + server.getLocalPort());
 
-        // Gateway connected to Server
-        socket = server.accept();
-        System.out.println("Server accepted the gateway with TCP at " + server.getLocalPort());
 
     }
 

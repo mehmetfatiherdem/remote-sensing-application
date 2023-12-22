@@ -6,13 +6,13 @@ import java.net.*;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class HumidityGatewayHandler {
+public class HumidityCommunicationHandler {
     private DatagramSocket socket;
     private InetAddress address;
     private int port;
     private Sensor sensor;
 
-    public HumidityGatewayHandler(Sensor sensor, InetAddress address, int port) throws SocketException, UnknownHostException {
+    public HumidityCommunicationHandler(Sensor sensor, InetAddress address, int port) throws SocketException, UnknownHostException {
         this.port = port;
         socket = new DatagramSocket();
         this.address = address;

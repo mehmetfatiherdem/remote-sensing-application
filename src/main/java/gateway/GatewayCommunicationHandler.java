@@ -33,15 +33,17 @@ public class GatewayCommunicationHandler extends Thread{
 
         this.address = address;
 
+        // Gateway connected to Server
+        tcpSendToServerSocket = new Socket(address, tcpServerPort);
+        System.out.println("Gateway Connected to server with TCP at " + tcpSendToServerSocket.getLocalPort());
+
         tcpSensorServer = new ServerSocket(tcpSensorPort);
         System.out.println("Gateway waiting for a TCP Sensor at port " + tcpSensorServer.getLocalPort());
 
         datagramSocket = new DatagramSocket(udpSensorPort);
         System.out.println("Gateway datagram socket is ready for UDP client at port " + datagramSocket.getLocalPort());
 
-        // Gateway connected to Server
-        tcpSendToServerSocket = new Socket(address, tcpServerPort);
-        System.out.println("Gateway Connected to server with TCP at " + tcpSendToServerSocket.getLocalPort());
+
 
     }
 
@@ -53,21 +55,22 @@ public class GatewayCommunicationHandler extends Thread{
             tcpSensorSocket = tcpSensorServer.accept();
             System.out.println("Gateway accepted a TCP Sensor at port " + tcpSensorServer.getLocalPort());
 
-            // send info to the server about the sensors
+            // create byte stream to send info to the server about the sensors
             serverOut = new DataOutputStream(tcpSendToServerSocket.getOutputStream());
+
+            // receive the data from the sensors
+            sensorIn = new DataInputStream(new BufferedInputStream(tcpSensorSocket.getInputStream()));
+
+            //TODO: handle the data
 
             // create a task to send info to the server once it is connected
 
-            SendSensorInfoTask sendSensorInfoTask = new SendSensorInfoTask();
+            GatewayToServerSensorInfoTimerTask gatewayToServerSensorInfoTimerTask = new GatewayToServerSensorInfoTimerTask();
 
             ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-            executor.schedule(sendSensorInfoTask, 0, TimeUnit.SECONDS);
+            executor.schedule(gatewayToServerSensorInfoTimerTask, 0, TimeUnit.SECONDS);
 
-            // receive the data from the sensors handle them and signal the server
-
-
-            sensorIn = new DataInputStream(new BufferedInputStream(tcpSensorSocket.getInputStream()));
 
             String line;
 
