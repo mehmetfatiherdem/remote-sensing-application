@@ -1,4 +1,4 @@
-package main.java;
+package main.java.sensor;
 
 import java.util.Date;
 
@@ -26,7 +26,7 @@ public class HumiditySensor extends Sensor{
         // dealing with strings makes our life harder
     }
     public SensorMessage generateAliveMessage(){
-        return new SensorMessage(generateAliveValue(), new Date());
+        return new SensorMessage(getType(), generateAliveValue(), new Date());
     }
 
 }

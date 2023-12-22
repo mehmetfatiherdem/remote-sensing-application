@@ -1,4 +1,4 @@
-package main.java;
+package main.java.sensor;
 
 public enum SENSOR_TYPE {
     TEMPERATURE("Temperature Sensor"),

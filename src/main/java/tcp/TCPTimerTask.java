@@ -1,4 +1,6 @@
-package main.java;
+package main.java.tcp;
+
+import main.java.sensor.Sensor;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -15,7 +17,7 @@ public class TCPTimerTask implements Runnable {
     public void run() {
         try {
             var temp = sensor.generateMessage();
-            out.writeUTF(sensor.toString().substring(10, 27) + " " + temp.getVal() + " at " + temp.getTimeStamp());
+            out.writeUTF(temp.getString());
         } catch (IOException i) {
             System.out.println(i);
         }

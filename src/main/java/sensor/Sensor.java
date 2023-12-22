@@ -1,4 +1,4 @@
-package main.java;
+package main.java.sensor;
 
 import java.util.Date;
 import java.util.Random;
@@ -20,7 +20,7 @@ public abstract class Sensor {
     }
 
     public SensorMessage generateMessage(){
-        return new SensorMessage(generateValue(), new Date());
+        return new SensorMessage(getType(), generateValue(), new Date());
     }
 
     public abstract SENSOR_TYPE getType();

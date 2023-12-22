@@ -1,4 +1,4 @@
-package main.java;
+package main.java.utils;
 
 public class Helpers {
     public static StringBuilder ByteToStr(byte[] a) {

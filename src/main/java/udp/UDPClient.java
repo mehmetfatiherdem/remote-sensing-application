@@ -1,4 +1,7 @@
-package main.java;
+package main.java.udp;
+
+import main.java.HUMIDITY_MESSAGE;
+import main.java.sensor.Sensor;
 
 import java.net.*;
 import java.util.concurrent.ScheduledThreadPoolExecutor;

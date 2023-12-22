@@ -1,10 +1,11 @@
-package main.java;
+package main.java.tcp;
+
+import main.java.sensor.Sensor;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.Timer;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 

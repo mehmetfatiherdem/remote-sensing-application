@@ -1,5 +1,11 @@
 package main.java;
 
+import main.java.sensor.HumiditySensor;
+import main.java.sensor.TemperatureSensor;
+import main.java.tcp.TCPClient;
+import main.java.udp.UDPClient;
+import main.java.utils.Constants;
+
 import java.io.IOException;
 import java.net.InetAddress;
 

@@ -1,4 +1,4 @@
-package main.java;
+package main.java.sensor;
 
 /*
     connected to gateway via TCP

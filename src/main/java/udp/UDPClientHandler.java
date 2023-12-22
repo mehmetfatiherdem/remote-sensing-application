@@ -1,4 +1,4 @@
-package main.java;
+package main.java.udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -22,7 +22,7 @@ public class UDPClientHandler extends Thread{
 
             try {
                 socket.receive(packet);
-                System.out.println("Humidity sensor: " + byteToStr(buf) + " at port " + socket.getLocalPort());
+                System.out.println(byteToStr(buf));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

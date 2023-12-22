@@ -1,4 +1,8 @@
-package main.java;
+package main.java.udp;
+
+import main.java.HUMIDITY_MESSAGE;
+import main.java.sensor.HumiditySensor;
+import main.java.sensor.Sensor;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
