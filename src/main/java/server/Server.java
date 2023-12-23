@@ -11,7 +11,9 @@ public class Server {
         TODO: am not sure if we should just use field for this or a txt file
         TODO: so for now lets keep this
      */
-    private final ArrayList<String> messages = new ArrayList<>();
+    private final ArrayList<String> tempMessages = new ArrayList<>();
+    private final ArrayList<String> aliveMessages = new ArrayList<>();
+    private final ArrayList<String> humidityMessages = new ArrayList<>();
     public Server() {
 
     }
@@ -23,10 +25,25 @@ public class Server {
         return instance;
     }
 
-    public ArrayList<String> getMessages() {
-        return messages;
+    public ArrayList<String> getTempMessages() {
+        return tempMessages;
     }
-    public void storeMessage(String msg){
-        this.messages.add(msg);
+
+    public ArrayList<String> getAliveMessages() {
+        return aliveMessages;
+    }
+
+    public ArrayList<String> getHumidityMessages() {
+        return humidityMessages;
+    }
+
+    public void addTempMessage(String msg){
+        tempMessages.add(msg);
+    }
+    public void addAliveMessage(String msg){
+        aliveMessages.add(msg);
+    }
+    public void addHumidityMessage(String msg){
+        humidityMessages.add(msg);
     }
 }

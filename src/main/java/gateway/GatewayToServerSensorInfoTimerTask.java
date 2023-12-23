@@ -21,8 +21,8 @@ public class GatewayToServerSensorInfoTimerTask implements Runnable {
     @Override
     public void run() {
         try {
-            var temp = sensor.generateMessage();
-            out.writeUTF(temp.getString());
+            var info = sensor.getType().getName();
+            out.writeUTF(info);
         } catch (IOException i) {
             System.out.println(i);
         }

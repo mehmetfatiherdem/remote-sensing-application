@@ -15,28 +15,13 @@ public class ServerCommunicationHandler extends Thread{
     private DataInputStream in;
     private DataOutputStream out;
 
-    public ServerCommunicationHandler(int port) throws IOException {
-
-        server = new ServerSocket(port);
-        System.out.println("Server waiting for a TCP Gateway at port " + server.getLocalPort());
-
-
+    public ServerCommunicationHandler(Socket socket) {
+        this.socket = socket;
     }
 
     public void run(){
 
         try {
-
-            // temperature sensor is connected to the gateway
-            socket = server.accept();
-            System.out.println("Gateway accepted a TCP Sensor at port " + server.getLocalPort());
-
-            // send info to the server about the sensors
-            out = new DataOutputStream(socket.getOutputStream());
-
-            // create a task
-
-
 
             in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 

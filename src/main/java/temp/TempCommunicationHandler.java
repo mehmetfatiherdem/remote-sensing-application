@@ -10,21 +10,16 @@ import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class TempCommunicationHandler {
+public class TempCommunicationHandler extends Thread{
     private Socket socket;
     private Sensor sensor;
-    private InetAddress address;
-    private int port;
-    public TempCommunicationHandler(Sensor sensor, InetAddress address, int port) throws IOException {
-        this.address = address;
-        this.port = port;
-        this.sensor = sensor;
 
-        socket = new Socket(address, port);
-        System.out.println(sensor.getType().getName() + " Connected with TCP");
+    public TempCommunicationHandler(Sensor sensor, Socket socket) {
+        this.sensor = sensor;
+        this.socket = socket;
     }
 
-    public void sendMessage(){
+    public void run(){
         DataOutputStream out;
         try {
             out = new DataOutputStream(socket.getOutputStream());
@@ -34,12 +29,12 @@ public class TempCommunicationHandler {
         }
 
         TempSensorTimerTask task = new TempSensorTimerTask(sensor, out);
-        SensorToGatewaySensorInfoTimerTask sensorToGatewaySensorInfoTimerTask =
-                new SensorToGatewaySensorInfoTimerTask(sensor, out);
+        //SensorToGatewaySensorInfoTimerTask sensorToGatewaySensorInfoTimerTask =
+        //           new SensorToGatewaySensorInfoTimerTask(sensor, out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        executor.schedule(sensorToGatewaySensorInfoTimerTask, 0, TimeUnit.SECONDS);
+        // executor.schedule(sensorToGatewaySensorInfoTimerTask, 0, TimeUnit.SECONDS);
 
         executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
 
@@ -54,11 +49,4 @@ public class TempCommunicationHandler {
         return sensor;
     }
 
-    public InetAddress getAddress() {
-        return address;
-    }
-
-    public int getPort() {
-        return port;
-    }
 }
