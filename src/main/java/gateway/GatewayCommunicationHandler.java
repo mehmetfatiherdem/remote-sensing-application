@@ -5,16 +5,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.Socket;
 
 public class GatewayCommunicationHandler extends Thread{
 
     // TCP w/Server
     private Socket tcpSendToServerSocket;
-    private Gateway gateway;
-    private InetAddress address;
-    private DataInputStream serverIn;
     private DataOutputStream serverOut;
 
     // TCP w/Sensor
@@ -49,14 +45,17 @@ public class GatewayCommunicationHandler extends Thread{
             while (true) {
                 try {
                     // read sensor message
-                    line = sensorIn.readUTF();
+                    while((line = sensorIn.readUTF()).length() != 0){
+                        System.out.println(line);
 
-                    // send it to the server
-                    serverOut.writeUTF(line);
+                        // send it to the server
+                        serverOut.writeUTF(line);
+
+                    }
 
                 }
                 catch(IOException i) {
-                    System.out.println(i);
+                    throw new RuntimeException(i);
                 }
             }
 

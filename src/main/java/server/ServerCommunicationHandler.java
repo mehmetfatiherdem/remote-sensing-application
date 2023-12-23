@@ -4,14 +4,12 @@ import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerCommunicationHandler extends Thread{
 
     // TCP w/Gateway
     private Socket socket;
-    private ServerSocket server;
     private DataInputStream in;
     private DataOutputStream out;
 

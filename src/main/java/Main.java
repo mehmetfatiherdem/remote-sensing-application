@@ -101,6 +101,21 @@ public class Main {
             System.out.println("Gateway is connected to the server on port " + tcpServer.getPort());
         }
 
+        ServerCommunicationHandler serverCommunicationHandler =
+                new ServerCommunicationHandler(tcpServer.getSocket());
+
+        serverCommunicationHandler.start();
+
+        Thread.sleep(1000);
+
+
+        GatewayCommunicationHandler gatewayCommunicationHandler =
+                new GatewayCommunicationHandler(tcpClientGateway.getSocket(), tcpTemp.getSocket(),
+                        udpHumidity.getSocket());
+        gatewayCommunicationHandler.start();
+
+        Thread.sleep(1000);
+
 
         // min-max temp/humidity values
         int minTemp = 20;
@@ -114,27 +129,15 @@ public class Main {
 
 
         //  initialize the client instances with the corresponding sensors
-        //HumidityCommunicationHandler humiditySensorClient =
-                //new HumidityCommunicationHandler(humiditySensor, localHostAddress, Constants.gatewaySensorUDPPort);
+        HumidityCommunicationHandler humiditySensorClient =
+                new HumidityCommunicationHandler(humiditySensor, udpHumidity.getSocket(), localHostAddress);
         TempCommunicationHandler tempSensorClient =
                 new TempCommunicationHandler(tempSensor, tcpTemp.getSocket());
 
         // start sending the messages from the clients
-        tempSensorClient.start();
-        Thread.sleep(1000);
-        //humiditySensorClient.sendMessage();
+        tempSensorClient.sendMessage();
 
+        humiditySensorClient.sendMessage();
 
-        GatewayCommunicationHandler gatewayCommunicationHandler =
-                new GatewayCommunicationHandler(tcpClientGateway.getSocket(), tcpTemp.getSocket(),
-                        udpHumidity.getSocket());
-        gatewayCommunicationHandler.start();
-
-        Thread.sleep(1000);
-
-        ServerCommunicationHandler serverCommunicationHandler =
-                new ServerCommunicationHandler(tcpServer.getSocket());
-
-        serverCommunicationHandler.start();
     }
 }

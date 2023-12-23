@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class TempCommunicationHandler extends Thread{
+public class TempCommunicationHandler{
     private Socket socket;
     private Sensor sensor;
 
@@ -19,7 +19,7 @@ public class TempCommunicationHandler extends Thread{
         this.socket = socket;
     }
 
-    public void run(){
+    public void sendMessage(){
         DataOutputStream out;
         try {
             out = new DataOutputStream(socket.getOutputStream());
