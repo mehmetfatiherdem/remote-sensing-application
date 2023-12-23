@@ -1,7 +1,10 @@
 package main.java.server;
 
+import main.java.utils.Helpers;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Server {
     private static Server instance;
@@ -11,9 +14,14 @@ public class Server {
         TODO: am not sure if we should just use field for this or a txt file
         TODO: so for now lets keep this
      */
-    private final ArrayList<String> tempMessages = new ArrayList<>();
-    private final ArrayList<String> aliveMessages = new ArrayList<>();
-    private final ArrayList<String> humidityMessages = new ArrayList<>();
+    private final ArrayList<Integer> tempVal = new ArrayList<>();
+    private final ArrayList<Date> tempMsgTimeStamp = new ArrayList<>();
+    private final ArrayList<Date> aliveMsgTimeStamp = new ArrayList<>();
+    private final ArrayList<Integer> humidityVal = new ArrayList<>();
+    private final ArrayList<Date> humidityMsgTimeStamp = new ArrayList<>();
+
+    private boolean isTempSensorOff = false;
+
     public Server() {
 
     }
@@ -25,25 +33,74 @@ public class Server {
         return instance;
     }
 
-    public ArrayList<String> getTempMessages() {
-        return tempMessages;
+    public void breakDownMessageAndStore(String[] msgElements){
+
+        String timeStampString = msgElements[3] + " " +
+                msgElements[4] + " " + msgElements[5] +
+                " " + msgElements[6] + " " + msgElements[7] +
+                " " + msgElements[8];
+
+        Date timeStamp = Helpers.strToDate(timeStampString);
+
+        if(msgElements[0].equals("Temperature")){
+            int tempVal = Integer.parseInt(msgElements[2]);
+            addTempVal(tempVal);
+            addTempMsgTimeStamp(timeStamp);
+
+        } else if (msgElements[0].equals("Humidity")) {
+            if(msgElements[2].equals("ALIVE")){
+                addAliveMsgTimeStamp(timeStamp);
+            }else{
+                int humidityVal = Integer.parseInt(msgElements[2]);
+                addHumidityVal(humidityVal);
+                addHumidityMsgTimeStamp(timeStamp);
+            }
+        }
     }
 
-    public ArrayList<String> getAliveMessages() {
-        return aliveMessages;
+    public ArrayList<Integer> getTempVal() {
+        return tempVal;
     }
 
-    public ArrayList<String> getHumidityMessages() {
-        return humidityMessages;
+    public ArrayList<Date> getAliveMsgTimeStamp() {
+        return aliveMsgTimeStamp;
     }
 
-    public void addTempMessage(String msg){
-        tempMessages.add(msg);
+    public ArrayList<Integer> getHumidityVal() {
+        return humidityVal;
     }
-    public void addAliveMessage(String msg){
-        aliveMessages.add(msg);
+
+    public ArrayList<Date> getTempMsgTimeStamp() {
+        return tempMsgTimeStamp;
     }
-    public void addHumidityMessage(String msg){
-        humidityMessages.add(msg);
+
+    public ArrayList<Date> getHumidityMsgTimeStamp() {
+        return humidityMsgTimeStamp;
+    }
+
+    public void addTempVal(int val){
+        tempVal.add(val);
+    }
+    public void addHumidityVal(int val){
+        humidityVal.add(val);
+    }
+    public void addHumidityMsgTimeStamp(Date timestamp){
+        humidityMsgTimeStamp.add(timestamp);
+    }
+
+    public void addTempMsgTimeStamp(Date timestamp){
+        tempMsgTimeStamp.add(timestamp);
+    }
+
+    public void addAliveMsgTimeStamp(Date timestamp){
+        aliveMsgTimeStamp.add(timestamp);
+    }
+
+    public boolean isTempSensorOff() {
+        return isTempSensorOff;
+    }
+
+    public void setTempSensorOff(boolean tempSensorOff) {
+        isTempSensorOff = tempSensorOff;
     }
 }

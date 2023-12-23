@@ -1,8 +1,6 @@
 package main.java;
 
-import main.java.gateway.Gateway;
-import main.java.gateway.GatewayHumidityHandler;
-import main.java.gateway.GatewayTempHandler;
+import main.java.gateway.*;
 import main.java.humidity.HumidityCommunicationHandler;
 import main.java.humidity.HumiditySensor;
 import main.java.server.ServerCommunicationHandler;
@@ -129,14 +127,21 @@ public class Main {
         gatewayTempHandler.start();
 
         GatewayHumidityHandler gatewayHumidityHandler =
-                new GatewayHumidityHandler(udpHumidity.getSocket(), tcpClientGateway.getSocket());
+                new GatewayHumidityHandler(udpGateway.getSocket(), tcpClientGateway.getSocket());
         gatewayHumidityHandler.start();
 
         ServerCommunicationHandler serverCommunicationHandler =
-                new ServerCommunicationHandler(tcpServer.getSocket());
+                new ServerCommunicationHandler(tcpServer.getSocket(), server);
 
         serverCommunicationHandler.start();
 
+        // request the last sent temp value from the server
+        RequestTemp requestTemp = new RequestTemp(tcpClientGateway.getSocket());
+        requestTemp.request();
 
+        GatewayServerHandler gatewayServerHandler =
+                new GatewayServerHandler(tcpClientGateway.getSocket(), gateway);
+
+        gatewayServerHandler.start();
     }
 }

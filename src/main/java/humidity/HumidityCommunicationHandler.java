@@ -23,7 +23,7 @@ public class HumidityCommunicationHandler {
         HumiditySensorTimerTask sendValueTask = new HumiditySensorTimerTask(sensor, HUMIDITY_MESSAGE.VALUE, socket, address, socket.getPort());
         HumiditySensorTimerTask sendAliveTask = new HumiditySensorTimerTask(sensor, HUMIDITY_MESSAGE.ALIVE, socket, address, socket.getPort());
 
-        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(2);
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
         executor.scheduleAtFixedRate(sendValueTask, 0, 1, TimeUnit.SECONDS);
         executor.scheduleAtFixedRate(sendAliveTask, 0, 3, TimeUnit.SECONDS);

@@ -36,7 +36,7 @@ public class TempCommunicationHandler{
 
         // executor.schedule(sensorToGatewaySensorInfoTimerTask, 0, TimeUnit.SECONDS);
 
-        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(task, 0, 4, TimeUnit.SECONDS);
 
         //Close connection logic??
     }

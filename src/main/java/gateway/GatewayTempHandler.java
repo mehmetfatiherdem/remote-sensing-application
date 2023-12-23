@@ -35,15 +35,15 @@ public class GatewayTempHandler extends Thread{
 
             //TODO: send info to server about the sensors first
 
-            String line;
+            String msg;
 
             while (true) {
                 try {
                     // read temp sensor message
-                    line = sensorIn.readUTF();
+                    msg = sensorIn.readUTF();
 
                     // send temp sensor message to the server
-                    serverOut.writeUTF(line);
+                    serverOut.writeUTF(msg);
 
 
                 }

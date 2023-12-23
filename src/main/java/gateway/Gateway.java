@@ -1,7 +1,10 @@
 package main.java.gateway;
 
+import main.java.utils.Helpers;
+
 import java.io.IOException;
 import java.net.SocketException;
+import java.util.Date;
 
 /*
     reads values from sensors and sends them with timestamps
@@ -29,6 +32,12 @@ public class Gateway {
             instance = new Gateway();
         }
         return instance;
+    }
+
+    public boolean isTempSensorOff(String timeStamp){
+        Date date = Helpers.strToDate(timeStamp);
+
+        return Helpers.calculateSecondsPassed(date) >= 3;
     }
 
 }
