@@ -31,14 +31,4 @@ public class Gateway {
         return instance;
     }
 
-    public void handleUDPClient(int port) throws SocketException {
-        GatewayHumidityHandler gatewayHumidityHandler = new GatewayHumidityHandler(port);
-        gatewayHumidityHandler.start();
-    }
-
-    public void handleTCPClient(int port) throws IOException {
-        GatewayTempHandler gatewayTempHandler = new GatewayTempHandler(port);
-        gatewayTempHandler.start();
-    }
-
 }

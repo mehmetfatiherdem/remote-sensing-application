@@ -1,7 +1,8 @@
 package main.java;
 
 import main.java.gateway.Gateway;
-import main.java.gateway.GatewayCommunicationHandler;
+import main.java.gateway.GatewayHumidityHandler;
+import main.java.gateway.GatewayTempHandler;
 import main.java.humidity.HumidityCommunicationHandler;
 import main.java.humidity.HumiditySensor;
 import main.java.server.ServerCommunicationHandler;
@@ -101,22 +102,6 @@ public class Main {
             System.out.println("Gateway is connected to the server on port " + tcpServer.getPort());
         }
 
-        ServerCommunicationHandler serverCommunicationHandler =
-                new ServerCommunicationHandler(tcpServer.getSocket());
-
-        serverCommunicationHandler.start();
-
-        Thread.sleep(1000);
-
-
-        GatewayCommunicationHandler gatewayCommunicationHandler =
-                new GatewayCommunicationHandler(tcpClientGateway.getSocket(), tcpTemp.getSocket(),
-                        udpHumidity.getSocket());
-        gatewayCommunicationHandler.start();
-
-        Thread.sleep(1000);
-
-
         // min-max temp/humidity values
         int minTemp = 20;
         int maxTemp = 30;
@@ -138,6 +123,20 @@ public class Main {
         tempSensorClient.sendMessage();
 
         humiditySensorClient.sendMessage();
+
+        GatewayTempHandler gatewayTempHandler =
+                new GatewayTempHandler(tcpClientGateway.getSocket(), tcpServerGateway.getSocket());
+        gatewayTempHandler.start();
+
+        GatewayHumidityHandler gatewayHumidityHandler =
+                new GatewayHumidityHandler(udpHumidity.getSocket(), tcpClientGateway.getSocket());
+        gatewayHumidityHandler.start();
+
+        ServerCommunicationHandler serverCommunicationHandler =
+                new ServerCommunicationHandler(tcpServer.getSocket());
+
+        serverCommunicationHandler.start();
+
 
     }
 }

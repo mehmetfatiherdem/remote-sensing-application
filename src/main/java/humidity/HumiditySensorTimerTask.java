@@ -32,7 +32,7 @@ public class HumiditySensorTimerTask implements Runnable {
                 buf = humidity.getByteArr();
             }else{
                 return; // When buf this case holds to be true it breaks everything
-                        // due to buf being null so I just return to be safe
+                        // due to buf being null, so I just return to be safe
             }
         }
 

@@ -1,36 +1,54 @@
 package main.java.gateway;
-import java.net.*;
-import java.io.*;
 
-public class GatewayTempHandler extends Thread {
-    private Socket socket;
-    private ServerSocket server;
-    private DataInputStream in;
-    public GatewayTempHandler(int port) throws IOException {
-        server = new ServerSocket(port);
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 
-        System.out.println("Gateway Waiting for a TCP client at port " + server.getLocalPort());
+public class GatewayTempHandler extends Thread{
+
+    // TCP w/Server
+    private Socket tcpSendToServerSocket;
+    private DataOutputStream serverOut;
+
+    // TCP w/Sensor
+    private Socket tcpSensorSocket;
+    private DataInputStream sensorIn;
+
+
+    public GatewayTempHandler(Socket tcpSendToServerSocket, Socket tcpSensorSocket) {
+        this.tcpSendToServerSocket = tcpSendToServerSocket;
+        this.tcpSensorSocket = tcpSensorSocket;
+
     }
 
     public void run(){
 
         try {
-            socket = server.accept();
-            System.out.println("Gateway accepted TCP Client at port " + server.getLocalPort());
 
+            // receive the data from the sensors
+            sensorIn = new DataInputStream(new BufferedInputStream(tcpSensorSocket.getInputStream()));
 
-            in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            // create byte stream to send info to the server about the sensors
+            serverOut = new DataOutputStream(tcpSendToServerSocket.getOutputStream());
+
+            //TODO: send info to server about the sensors first
 
             String line;
 
             while (true) {
                 try {
-                    line = in.readUTF();
-                    System.out.println(line);
+                    // read temp sensor message
+                    line = sensorIn.readUTF();
+
+                    // send temp sensor message to the server
+                    serverOut.writeUTF(line);
+
 
                 }
                 catch(IOException i) {
-                    System.out.println(i);
+                    throw new RuntimeException(i);
                 }
             }
 
@@ -39,7 +57,4 @@ public class GatewayTempHandler extends Thread {
             System.out.println(i);
         }
     }
-
-
-
 }
