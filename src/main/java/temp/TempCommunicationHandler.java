@@ -1,25 +1,22 @@
-package main.java;
+package main.java.temp;
+
+import main.java.sensor.Sensor;
+import main.java.sensor.SensorToGatewaySensorInfoTimerTask;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.util.Timer;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class TCPClient {
+public class TempCommunicationHandler{
     private Socket socket;
     private Sensor sensor;
-    private InetAddress address;
-    private int port;
-    public TCPClient(Sensor sensor, InetAddress address, int port) throws IOException {
-        this.address = address;
-        this.port = port;
-        this.sensor = sensor;
 
-        socket = new Socket(address, port);
-        System.out.println("Connected");
+    public TempCommunicationHandler(Sensor sensor, Socket socket) {
+        this.sensor = sensor;
+        this.socket = socket;
     }
 
     public void sendMessage(){
@@ -31,11 +28,15 @@ public class TCPClient {
             return;
         }
 
-        TCPTimerTask task = new TCPTimerTask(sensor, out);
+        TempSensorTimerTask task = new TempSensorTimerTask(sensor, out);
+        //SensorToGatewaySensorInfoTimerTask sensorToGatewaySensorInfoTimerTask =
+        //           new SensorToGatewaySensorInfoTimerTask(sensor, out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
+        // executor.schedule(sensorToGatewaySensorInfoTimerTask, 0, TimeUnit.SECONDS);
+
+        executor.scheduleAtFixedRate(task, 0, 4, TimeUnit.SECONDS);
 
         //Close connection logic??
     }
@@ -48,11 +49,4 @@ public class TCPClient {
         return sensor;
     }
 
-    public InetAddress getAddress() {
-        return address;
-    }
-
-    public int getPort() {
-        return port;
-    }
 }

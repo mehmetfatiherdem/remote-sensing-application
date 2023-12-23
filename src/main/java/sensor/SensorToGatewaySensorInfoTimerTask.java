@@ -1,12 +1,14 @@
-package main.java;
+package main.java.sensor;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class TCPTimerTask implements Runnable {
+public class SensorToGatewaySensorInfoTimerTask implements Runnable{
+
     private Sensor sensor;
     DataOutputStream out;
-    public TCPTimerTask(Sensor sensor, DataOutputStream out){
+
+    public SensorToGatewaySensorInfoTimerTask(Sensor sensor, DataOutputStream out) {
         this.sensor = sensor;
         this.out = out;
     }
@@ -14,8 +16,8 @@ public class TCPTimerTask implements Runnable {
     @Override
     public void run() {
         try {
-            var temp = sensor.generateMessage();
-            out.writeUTF(sensor.toString().substring(10, 27) + " " + temp.getVal() + " at " + temp.getTimeStamp());
+            var info = sensor.getType().getName();
+            out.writeUTF(info);
         } catch (IOException i) {
             System.out.println(i);
         }
