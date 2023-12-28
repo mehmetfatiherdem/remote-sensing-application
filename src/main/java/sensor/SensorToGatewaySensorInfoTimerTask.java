@@ -3,6 +3,8 @@ package main.java.sensor;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import static main.java.AdvancedLogger.logException;
+
 public class SensorToGatewaySensorInfoTimerTask implements Runnable{
 
     private Sensor sensor;
@@ -19,6 +21,7 @@ public class SensorToGatewaySensorInfoTimerTask implements Runnable{
             var info = sensor.getType().getName();
             out.writeUTF(info);
         } catch (IOException i) {
+            logException(i);
             System.out.println(i);
         }
     }

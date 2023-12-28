@@ -1,0 +1,20 @@
+Ara 26, 2023 5:07:20 ÖS main.java.Main initLogger
+INFO: Logger initialized successfully.
+Ara 26, 2023 5:07:20 ÖS main.java.Main main
+INFO: Application starting...
+Ara 26, 2023 5:07:21 ÖS main.java.Main main
+INFO: Server up&running on port 5000
+Ara 26, 2023 5:07:21 ÖS main.java.Main main
+INFO: Server is waiting for a Client....
+Ara 26, 2023 5:07:22 ÖS main.java.Main main
+INFO: Gateway waiting for TCP Sensor Client on port 4445
+Ara 26, 2023 5:07:23 ÖS main.java.Main main
+INFO: Temperature Sensor is connected to the gateway on port 4445
+Ara 26, 2023 5:07:24 ÖS main.java.Main main
+INFO: Gateway UDP socket is up&running on port 3334
+Ara 26, 2023 5:07:25 ÖS main.java.Main main
+INFO: Humidity sensor udp socket is ready on port 3334
+Ara 26, 2023 5:07:26 ÖS main.java.Main main
+INFO: Gateway is connected to the server on port 5000
+Ara 26, 2023 5:07:26 ÖS main.java.Main main
+INFO: Application exiting...

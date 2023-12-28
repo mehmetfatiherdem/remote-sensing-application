@@ -5,6 +5,8 @@ import main.java.sensor.Sensor;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import static main.java.AdvancedLogger.logException;
+
 public class TempSensorTimerTask implements Runnable {
     private Sensor sensor;
     DataOutputStream out;
@@ -19,7 +21,7 @@ public class TempSensorTimerTask implements Runnable {
             var temp = sensor.generateMessage();
             out.writeUTF(temp.getString());
         } catch (IOException i) {
-            System.out.println(i);
+            logException(i);
         }
     }
 }

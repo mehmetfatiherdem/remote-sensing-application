@@ -6,6 +6,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import static main.java.AdvancedLogger.*;
+
 public class ServerCommunicationHandler extends Thread{
 
     // TCP w/Gateway
@@ -31,16 +33,18 @@ public class ServerCommunicationHandler extends Thread{
             while (true) {
                 try {
                     msg = in.readUTF();
-                    System.out.println("gateway signal to server ===>" + msg);
+                    logInfo("gateway signal to server ===>" + msg);
 
                     String[] msgElements = msg.split(" ");
 
                     if(msgElements[0].equals("GET") && msgElements[2].equals("TEMP")){
                         var timeStampArr = server.getTempMsgTimeStamp();
                         if(timeStampArr.size() == 0){
+                            logInfo("Temperature Sensor");
                             out.writeUTF("Temperature Sensor");
                         }else{
                             var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
+                            logInfo("Temperature Sensor"+timeStamp);
                             out.writeUTF("Temperature Sensor " + timeStamp);
                         }
 
@@ -54,12 +58,14 @@ public class ServerCommunicationHandler extends Thread{
 
                 }
                 catch(IOException i) {
+                    logException(i);
                     System.out.println(i);
                 }
             }
 
         }
         catch(IOException i) {
+            logException(i);
             System.out.println(i);
         }
     }

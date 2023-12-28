@@ -6,6 +6,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Date;
+import static main.java.AdvancedLogger.*;
+import static main.java.AdvancedLogger.logInfo;
 
 public class GatewayServerHandler extends Thread{
 
@@ -39,19 +41,21 @@ public class GatewayServerHandler extends Thread{
                 try {
                     // read server message
                     msg = in.readUTF();
-                    System.out.println("temp timestamp coming from the server: " + msg);
+                    logInfo("temp timestamp coming from the server: " + msg);
 
                     String[] msgArr = msg.split(" ");
                     if(msgArr[0].equals("Temperature")){
                         if(msgArr.length == 2){
 
                             // send temp sensor message to the server
+                            logInfo("TEMP SENSOR OFF at " + new Date());
                             out.writeUTF("TEMP SENSOR OFF at " + new Date());
 
                         } else if(gateway.isTempSensorOff(msgArr[2] + " " +
                                 msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
                                 msgArr[7])){
                             // send temp sensor message to the server
+                            logInfo("TEMP SENSOR OFF at " + new Date());
                             out.writeUTF("TEMP SENSOR OFF at " + new Date());
                         }
                     }
@@ -59,12 +63,14 @@ public class GatewayServerHandler extends Thread{
 
                 }
                 catch(IOException i) {
+                    logException(i);
                     throw new RuntimeException(i);
                 }
             }
 
         }
         catch(IOException i) {
+            logException(i);
             System.out.println(i);
         }
     }

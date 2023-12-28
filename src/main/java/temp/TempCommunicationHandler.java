@@ -1,14 +1,14 @@
 package main.java.temp;
 
 import main.java.sensor.Sensor;
-import main.java.sensor.SensorToGatewaySensorInfoTimerTask;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import static main.java.AdvancedLogger.logException;
 
 public class TempCommunicationHandler{
     private Socket socket;
@@ -24,6 +24,7 @@ public class TempCommunicationHandler{
         try {
             out = new DataOutputStream(socket.getOutputStream());
         } catch (IOException i) {
+            logException(i);
             System.out.println(i);
             return;
         }

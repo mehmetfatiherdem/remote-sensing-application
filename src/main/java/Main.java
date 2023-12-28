@@ -3,10 +3,10 @@ package main.java;
 import main.java.gateway.*;
 import main.java.humidity.HumidityCommunicationHandler;
 import main.java.humidity.HumiditySensor;
+import main.java.server.Server;
 import main.java.server.ServerCommunicationHandler;
 import main.java.tcp.CreateTCPClient;
 import main.java.tcp.CreateTCPServer;
-import main.java.server.Server;
 import main.java.temp.TempCommunicationHandler;
 import main.java.temp.TemperatureSensor;
 import main.java.udp.CreateUDPListener;
@@ -15,10 +15,18 @@ import main.java.utils.Constants;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.SimpleFormatter;
+
+import static main.java.AdvancedLogger.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
+        initLogger();
 
+        logInfo("Application starting...");
         // initialize server
         Server server = Server.getInstance();
 
@@ -38,11 +46,11 @@ public class Main {
         Thread.sleep(1000);
 
         if(tcpServer.getServer() != null){
-            System.out.println("Server up&running on port " + tcpServer.getPort());
+            logInfo("Server up&running on port " + tcpServer.getPort());
         }
 
         if(tcpServer.getSocket() == null){
-            System.out.println("Server is waiting for a Client....");
+            logInfo("Server is waiting for a Client....");
         }
 
         // Gateway TCP connection waiting for Sensor
@@ -53,7 +61,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(tcpServerGateway.getServer() != null){
-            System.out.println("Gateway waiting for TCP Sensor Client on port " + tcpServerGateway.getPort());
+            logInfo("Gateway waiting for TCP Sensor Client on port " + tcpServerGateway.getPort());
         }
 
         // Temperature sensor
@@ -64,7 +72,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(tcpServerGateway.getSocket() != null){
-            System.out.println("Temperature Sensor is connected to the gateway on port " + tcpServerGateway.getPort());
+            logInfo("Temperature Sensor is connected to the gateway on port " + tcpServerGateway.getPort());
         }
 
         // Gateway UDP socket
@@ -75,7 +83,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(udpGateway.getSocket() != null){
-            System.out.println("Gateway UDP socket is up&running on port " + udpGateway.getPort());
+            logInfo("Gateway UDP socket is up&running on port " + udpGateway.getPort());
         }
 
         // Humidity Sensor udp socket
@@ -86,7 +94,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(udpHumidity.getSocket() != null){
-            System.out.println("Humidity sensor udp socket is ready on port " + udpHumidity.getPort());
+            logInfo("Humidity sensor udp socket is ready on port " + udpHumidity.getPort());
         }
 
         // TCP client socket of Gateway to signal server
@@ -97,7 +105,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(tcpServer.getSocket() != null){
-            System.out.println("Gateway is connected to the server on port " + tcpServer.getPort());
+            logInfo("Gateway is connected to the server on port " + tcpServer.getPort());
         }
 
         // min-max temp/humidity values
@@ -143,5 +151,29 @@ public class Main {
                 new GatewayServerHandler(tcpClientGateway.getSocket(), gateway);
 
         gatewayServerHandler.start();
+        logInfo("Application exiting...");
     }
+    private static void initLogger() {
+        logInfo("Initializing logger...");
+
+        try {
+            LOGGER.setLevel(Level.INFO);
+
+            // Create a console handler
+            ConsoleHandler consoleHandler = new ConsoleHandler();
+            consoleHandler.setLevel(Level.INFO);
+            LOGGER.addHandler(consoleHandler);
+
+            // Create a file handler with a custom formatter
+            FileHandler fileHandler = new FileHandler("logfile.log");
+            fileHandler.setLevel(Level.INFO);
+            fileHandler.setFormatter(new SimpleFormatter()); // Use a SimpleFormatter for human-readable logs
+            LOGGER.addHandler(fileHandler);
+
+            logInfo("Logger initialized successfully.");
+        } catch (SecurityException | IOException e) {
+            logInfo("SecurityException during logger initialization: " + e.getMessage());
+        }
+    }
+
 }

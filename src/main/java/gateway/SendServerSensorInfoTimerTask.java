@@ -5,6 +5,8 @@ import main.java.sensor.Sensor;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import static main.java.AdvancedLogger.logException;
+
 public class SendServerSensorInfoTimerTask implements Runnable {
     //FIXME: this is copy paste so will be removed
     private Sensor sensor;
@@ -24,7 +26,7 @@ public class SendServerSensorInfoTimerTask implements Runnable {
             var info = sensor.getType().getName();
             out.writeUTF(info);
         } catch (IOException i) {
-            System.out.println(i);
+            logException(i);
         }
     }
 }
