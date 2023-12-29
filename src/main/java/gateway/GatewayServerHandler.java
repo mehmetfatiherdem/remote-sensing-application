@@ -42,29 +42,29 @@ public class GatewayServerHandler extends Thread{
                     System.out.println("temp timestamp coming from the server: " + msg);
 
                     String[] msgArr = msg.split(" ");
-                    if(msgArr[0].equals("Temperature")){
+                    if(msgArr[0].equals("TEMP")){
                         if(msgArr.length == 2){
 
                             // send temp sensor message to the server
-                            out.writeUTF("TEMP SENSOR OFF at " + new Date());
+                            out.writeUTF("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
 
                         } else if(gateway.isTempSensorOff(msgArr[2] + " " +
                                 msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
                                 msgArr[7])){
                             // send temp sensor message to the server
-                            out.writeUTF("TEMP SENSOR OFF at " + new Date());
+                            out.writeUTF("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
                         }
-                    } if(msgArr[0].equals("Humidity")){
+                    } if(msgArr[0].equals("HUMIDITY")){
                         if(msgArr.length == 2){
 
                             // send temp sensor message to the server
-                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date());
+                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date().toString().toUpperCase());
 
                         } else if(gateway.isHumiditySensorOff(msgArr[2] + " " +
                                 msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
                                 msgArr[7])){
                             // send temp sensor message to the server
-                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date());
+                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date().toString().toUpperCase());
                         }
                     }
 
