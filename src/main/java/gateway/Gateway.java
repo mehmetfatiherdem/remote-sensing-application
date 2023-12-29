@@ -40,4 +40,10 @@ public class Gateway {
         return Helpers.calculateSecondsPassed(date) >= 3;
     }
 
+    public boolean isHumiditySensorOff(String timeStamp){
+        Date date = Helpers.strToDate(timeStamp);
+
+        return Helpers.calculateSecondsPassed(date) >= 7;
+    }
+
 }

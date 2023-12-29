@@ -6,7 +6,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class GatewayTempHandler extends Thread{
+public class GatewaySendTempSensorInfoToServerHandler extends Thread{
 
     // TCP w/Server
     private Socket tcpSendToServerSocket;
@@ -17,7 +17,7 @@ public class GatewayTempHandler extends Thread{
     private DataInputStream sensorIn;
 
 
-    public GatewayTempHandler(Socket tcpSendToServerSocket, Socket tcpSensorSocket) {
+    public GatewaySendTempSensorInfoToServerHandler(Socket tcpSendToServerSocket, Socket tcpSensorSocket) {
         this.tcpSendToServerSocket = tcpSendToServerSocket;
         this.tcpSensorSocket = tcpSensorSocket;
 

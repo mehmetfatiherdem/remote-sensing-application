@@ -21,6 +21,7 @@ public class Server {
     private final ArrayList<Date> humidityMsgTimeStamp = new ArrayList<>();
 
     private boolean isTempSensorOff = false;
+    private boolean isHumiditySensorOff = false;
 
     public Server() {
 
@@ -102,5 +103,13 @@ public class Server {
 
     public void setTempSensorOff(boolean tempSensorOff) {
         isTempSensorOff = tempSensorOff;
+    }
+
+    public boolean isHumiditySensorOff() {
+        return isHumiditySensorOff;
+    }
+
+    public void setHumiditySensorOff(boolean humiditySensorOff) {
+        isHumiditySensorOff = humiditySensorOff;
     }
 }

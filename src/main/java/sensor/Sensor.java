@@ -23,6 +23,9 @@ public abstract class Sensor {
         return new SensorMessage(getType(), generateValue(), new Date());
     }
 
+    public SensorMessage generateInfoMessage(){
+        return new SensorMessage(getType());
+    }
 
     public abstract SENSOR_TYPE getType();
 
