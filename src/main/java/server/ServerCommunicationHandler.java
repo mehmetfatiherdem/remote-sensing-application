@@ -40,7 +40,7 @@ public class ServerCommunicationHandler extends Thread{
                         if (msgElements[0].equals("GET") && msgElements[2].equals("TEMP")) {
                             var timeStampArr = server.getTempMsgTimeStamp();
                             if (timeStampArr.size() == 0) {
-                                out.writeUTF("TEMP SENSOR");
+                                out.writeUTF("TEMP SENSOR VALUE NOT FOUND");
                             } else {
                                 var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
                                 out.writeUTF("TEMP SENSOR " + timeStamp.toUpperCase());
@@ -49,7 +49,7 @@ public class ServerCommunicationHandler extends Thread{
                         } else if (msgElements[0].equals("GET") && msgElements[2].equals("ALIVE")) {
                             var timeStampArr = server.getAliveMsgTimeStamp();
                             if (timeStampArr.size() == 0) {
-                                out.writeUTF("HUMIDITY SENSOR");
+                                out.writeUTF("HUMIDITY SENSOR VALUE NOT FOUND");
                             } else {
                                 var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
                                 out.writeUTF("HUMIDITY SENSOR " + timeStamp.toUpperCase());

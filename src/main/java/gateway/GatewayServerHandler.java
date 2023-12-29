@@ -43,7 +43,7 @@ public class GatewayServerHandler extends Thread{
 
                     String[] msgArr = msg.split(" ");
                     if(msgArr[0].equals("TEMP")){
-                        if(msgArr.length == 2){
+                        if(msgArr[2].equals("VALUE") && msgArr[3].equals("NOT") && msgArr[4].equals("FOUND")){
 
                             // send temp sensor message to the server
                             out.writeUTF("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
@@ -55,7 +55,7 @@ public class GatewayServerHandler extends Thread{
                             out.writeUTF("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
                         }
                     } if(msgArr[0].equals("HUMIDITY")){
-                        if(msgArr.length == 2){
+                        if(msgArr[2].equals("VALUE") && msgArr[3].equals("NOT") && msgArr[4].equals("FOUND")){
 
                             // send temp sensor message to the server
                             out.writeUTF("HUMIDITY SENSOR OFF at " + new Date().toString().toUpperCase());

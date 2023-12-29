@@ -27,7 +27,7 @@ public class RequestTemp {
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        executor.scheduleAtFixedRate(task, 0, 3, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(task, 3, 3, TimeUnit.SECONDS);
 
         //Close connection logic??
     }
