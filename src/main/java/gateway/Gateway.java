@@ -3,7 +3,6 @@ package main.java.gateway;
 import main.java.utils.Helpers;
 
 import java.io.IOException;
-import java.net.SocketException;
 import java.util.Date;
 
 /*

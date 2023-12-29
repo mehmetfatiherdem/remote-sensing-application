@@ -20,9 +20,9 @@ public class SensorMessage {
     public byte[] getByteArr(){
         StringBuilder str = new StringBuilder();
         if(val == -1){
-            str.append(type.getName()).append(" ALIVE ").append(timeStamp);
+            str.append(type.getName()).append(" ALIVE ").append(timeStamp.toString().toUpperCase());
         }else{
-            str.append(type.getName()).append(" ").append(val).append(" ").append(timeStamp);
+            str.append(type.getName()).append(" ").append(val).append(" ").append(timeStamp.toString().toUpperCase());
         }
 
         return str.toString().getBytes();
@@ -30,7 +30,7 @@ public class SensorMessage {
 
     public String getString(){
         StringBuilder stringBuilder = new StringBuilder();
-        String str = stringBuilder.append(type.getName()).append(" ").append(val).append(" ").append(timeStamp).toString();
+        String str = stringBuilder.append(type.getName()).append(" ").append(val).append(" ").append(timeStamp.toString().toUpperCase()).toString();
         return str;
     }
 

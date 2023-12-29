@@ -40,19 +40,19 @@ public class ServerCommunicationHandler extends Thread{
                         if (msgElements[0].equals("GET") && msgElements[2].equals("TEMP")) {
                             var timeStampArr = server.getTempMsgTimeStamp();
                             if (timeStampArr.size() == 0) {
-                                out.writeUTF("Temperature Sensor");
+                                out.writeUTF("TEMP SENSOR");
                             } else {
                                 var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
-                                out.writeUTF("Temperature Sensor " + timeStamp);
+                                out.writeUTF("TEMP SENSOR " + timeStamp.toUpperCase());
                             }
 
                         } else if (msgElements[0].equals("GET") && msgElements[2].equals("ALIVE")) {
                             var timeStampArr = server.getAliveMsgTimeStamp();
                             if (timeStampArr.size() == 0) {
-                                out.writeUTF("Humidity Sensor");
+                                out.writeUTF("HUMIDITY SENSOR");
                             } else {
                                 var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
-                                out.writeUTF("Humidity Sensor " + timeStamp);
+                                out.writeUTF("HUMIDITY SENSOR " + timeStamp.toUpperCase());
                             }
 
                         } else if (msgElements[0].equals("TEMP") && msgElements[2].equals("OFF")) {
