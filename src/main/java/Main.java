@@ -113,7 +113,7 @@ public class Main {
 
         //  initialize the client instances with the corresponding sensors
         HumidityCommunicationHandler humiditySensorClient =
-                new HumidityCommunicationHandler(humiditySensor, udpHumidity.getSocket(), localHostAddress);
+                new HumidityCommunicationHandler(humiditySensor, udpHumidity.getSocket(), udpHumidity.getAddress(), udpHumidity.getPort());
         TempCommunicationHandler tempSensorClient =
                 new TempCommunicationHandler(tempSensor, tcpTemp.getSocket());
 

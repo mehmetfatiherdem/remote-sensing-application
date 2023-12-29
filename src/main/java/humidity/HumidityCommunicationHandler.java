@@ -10,18 +10,20 @@ public class HumidityCommunicationHandler {
     private DatagramSocket socket;
     private Sensor sensor;
     private InetAddress address;
+    private int port;
 
-    public HumidityCommunicationHandler(Sensor sensor, DatagramSocket socket, InetAddress address) {
+    public HumidityCommunicationHandler(Sensor sensor, DatagramSocket socket, InetAddress address, int port) {
         this.sensor = sensor;
         this.socket = socket;
         this.address = address;
+        this.port = port;
     }
 
 
     public void sendMessage() {
 
-        HumiditySensorTimerTask sendValueTask = new HumiditySensorTimerTask(sensor, HUMIDITY_MESSAGE.VALUE, socket, address, socket.getPort());
-        HumiditySensorTimerTask sendAliveTask = new HumiditySensorTimerTask(sensor, HUMIDITY_MESSAGE.ALIVE, socket, address, socket.getPort());
+        HumiditySensorTimerTask sendValueTask = new HumiditySensorTimerTask(sensor, HUMIDITY_MESSAGE.VALUE, socket, address, port);
+        HumiditySensorTimerTask sendAliveTask = new HumiditySensorTimerTask(sensor, HUMIDITY_MESSAGE.ALIVE, socket, address, port);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
