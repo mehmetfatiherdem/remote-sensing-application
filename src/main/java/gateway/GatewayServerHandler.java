@@ -54,6 +54,18 @@ public class GatewayServerHandler extends Thread{
                             // send temp sensor message to the server
                             out.writeUTF("TEMP SENSOR OFF at " + new Date());
                         }
+                    } if(msgArr[0].equals("Humidity")){
+                        if(msgArr.length == 2){
+
+                            // send temp sensor message to the server
+                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date());
+
+                        } else if(gateway.isHumiditySensorOff(msgArr[2] + " " +
+                                msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
+                                msgArr[7])){
+                            // send temp sensor message to the server
+                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date());
+                        }
                     }
 
 

@@ -4,13 +4,17 @@ import java.util.Date;
 
 public class SensorMessage {
     private final SENSOR_TYPE type;
-    private final int val;
-    private final Date timeStamp;
+    private int val;
+    private Date timeStamp;
 
     public SensorMessage(SENSOR_TYPE type, int val, Date timeStamp){
         this.type = type;
         this.val = val;
         this.timeStamp = timeStamp;
+    }
+
+    public SensorMessage(SENSOR_TYPE type){
+        this.type = type;
     }
 
     public byte[] getByteArr(){
@@ -28,6 +32,17 @@ public class SensorMessage {
         StringBuilder stringBuilder = new StringBuilder();
         String str = stringBuilder.append(type.getName()).append(" ").append(val).append(" ").append(timeStamp).toString();
         return str;
+    }
+
+    public String sendTCPSensorInfo(){
+        return "CONNECTED DEVICE INFO: " + type.getName();
+    }
+
+    public byte[] sendUDPSensorInfo(){
+        StringBuilder str = new StringBuilder();
+        str.append("CONNECTED DEVICE INFO: ").append(type.getName());
+
+        return str.toString().getBytes();
     }
 
     public int getVal() {

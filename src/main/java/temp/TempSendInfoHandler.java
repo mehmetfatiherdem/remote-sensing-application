@@ -8,11 +8,11 @@ import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class TempCommunicationHandler{
+public class TempSendInfoHandler {
     private Socket socket;
-    private Sensor sensor;
+    private TemperatureSensor sensor;
 
-    public TempCommunicationHandler(Sensor sensor, Socket socket) {
+    public TempSendInfoHandler(TemperatureSensor sensor, Socket socket) {
         this.sensor = sensor;
         this.socket = socket;
     }
@@ -26,11 +26,12 @@ public class TempCommunicationHandler{
             return;
         }
 
-        TempSensorTimerTask task = new TempSensorTimerTask(sensor, out);
+        TempSensorToGatewaySensorInfoTimerTask tempSensorToGatewaySensorInfoTimerTask =
+                   new TempSensorToGatewaySensorInfoTimerTask(sensor, out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        executor.scheduleAtFixedRate(task, 0, 4, TimeUnit.SECONDS); //TODO: change period to 1 before sending
+        executor.schedule(tempSensorToGatewaySensorInfoTimerTask, 0, TimeUnit.SECONDS);
 
         //Close connection logic??
     }
@@ -42,5 +43,4 @@ public class TempCommunicationHandler{
     public Sensor getSensor() {
         return sensor;
     }
-
 }

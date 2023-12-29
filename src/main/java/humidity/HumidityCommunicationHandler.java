@@ -28,7 +28,7 @@ public class HumidityCommunicationHandler {
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
         executor.scheduleAtFixedRate(sendValueTask, 0, 1, TimeUnit.SECONDS);
-        executor.scheduleAtFixedRate(sendAliveTask, 0, 3, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(sendAliveTask, 0, 8, TimeUnit.SECONDS); //TODO: change period to 3 before sending
 
 
         //TODO: socket close logic??

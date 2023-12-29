@@ -1,6 +1,4 @@
-package main.java.temp;
-
-import main.java.sensor.Sensor;
+package main.java.gateway;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -8,16 +6,14 @@ import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class TempCommunicationHandler{
+public class RequestAlive {
     private Socket socket;
-    private Sensor sensor;
 
-    public TempCommunicationHandler(Sensor sensor, Socket socket) {
-        this.sensor = sensor;
+    public RequestAlive(Socket socket) {
         this.socket = socket;
     }
 
-    public void sendMessage(){
+    public void request(){
         DataOutputStream out;
         try {
             out = new DataOutputStream(socket.getOutputStream());
@@ -26,11 +22,11 @@ public class TempCommunicationHandler{
             return;
         }
 
-        TempSensorTimerTask task = new TempSensorTimerTask(sensor, out);
+        RequestLastAliveTimeTask task = new RequestLastAliveTimeTask(out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        executor.scheduleAtFixedRate(task, 0, 4, TimeUnit.SECONDS); //TODO: change period to 1 before sending
+        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
 
         //Close connection logic??
     }
@@ -38,9 +34,4 @@ public class TempCommunicationHandler{
     public Socket getSocket() {
         return socket;
     }
-
-    public Sensor getSensor() {
-        return sensor;
-    }
-
 }

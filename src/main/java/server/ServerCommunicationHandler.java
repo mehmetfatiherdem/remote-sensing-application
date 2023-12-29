@@ -35,21 +35,34 @@ public class ServerCommunicationHandler extends Thread{
 
                     String[] msgElements = msg.split(" ");
 
-                    if(msgElements[0].equals("GET") && msgElements[2].equals("TEMP")){
-                        var timeStampArr = server.getTempMsgTimeStamp();
-                        if(timeStampArr.size() == 0){
-                            out.writeUTF("Temperature Sensor");
-                        }else{
-                            var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
-                            out.writeUTF("Temperature Sensor " + timeStamp);
-                        }
+                    if(!msgElements[2].equals("INFO:")) {
 
-                    } else if(msgElements[2].equals("OFF")){
-                        server.setTempSensorOff(true);
-                    }
-                    else{
-                        // break down the message and store the info
-                        server.breakDownMessageAndStore(msgElements);
+                        if (msgElements[0].equals("GET") && msgElements[2].equals("TEMP")) {
+                            var timeStampArr = server.getTempMsgTimeStamp();
+                            if (timeStampArr.size() == 0) {
+                                out.writeUTF("Temperature Sensor");
+                            } else {
+                                var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
+                                out.writeUTF("Temperature Sensor " + timeStamp);
+                            }
+
+                        } else if (msgElements[0].equals("GET") && msgElements[2].equals("ALIVE")) {
+                            var timeStampArr = server.getAliveMsgTimeStamp();
+                            if (timeStampArr.size() == 0) {
+                                out.writeUTF("Humidity Sensor");
+                            } else {
+                                var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
+                                out.writeUTF("Humidity Sensor " + timeStamp);
+                            }
+
+                        } else if (msgElements[0].equals("TEMP") && msgElements[2].equals("OFF")) {
+                            server.setTempSensorOff(true);
+                        } else if (msgElements[0].equals("HUMIDITY") && msgElements[2].equals("OFF")) {
+                            server.setHumiditySensorOff(true);
+                        } else {
+                            // break down the message and store the info
+                            server.breakDownMessageAndStore(msgElements);
+                        }
                     }
 
                 }
