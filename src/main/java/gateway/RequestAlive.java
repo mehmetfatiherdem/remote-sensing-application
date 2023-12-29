@@ -26,7 +26,7 @@ public class RequestAlive {
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(task, 0, 7, TimeUnit.SECONDS);
 
         //Close connection logic??
     }
