@@ -1,6 +1,9 @@
 package main.java;
 
+import com.sun.net.httpserver.HttpServer;
 import main.java.gateway.*;
+import main.java.handlers.HumidityHandler;
+import main.java.handlers.TemperatureHandler;
 import main.java.humidity.HumidityCommunicationHandler;
 import main.java.humidity.HumiditySendInfoHandler;
 import main.java.humidity.HumiditySensor;
@@ -17,6 +20,7 @@ import main.java.utils.Constants;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 
 import static main.java.AdvancedLogger.*;
 
@@ -37,6 +41,7 @@ public class Main {
         // Server TCP connection waiting for Gateway
         CreateTCPServer tcpServer = new CreateTCPServer(Constants.serverGatewayTCPPort);
         tcpServer.start();
+        startHttpServer(server);
 
         // wait a little for server to start
         Thread.sleep(1000);
@@ -172,5 +177,19 @@ public class Main {
         gatewayServerHandler.start();
 
     }
+    private static void startHttpServer(Server server1) throws IOException {
+        int port = 8080;
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
+        // Context for handling requests to /temperature
+        server.createContext("/temperature", new TemperatureHandler(server1));
+
+        // Context for handling requests to /humidity
+        server.createContext("/humidity", new HumidityHandler(server1));
+
+        server.setExecutor(null);  // Use the default executor
+        server.start();
+
+        logInfo("Web interface started on port " + port);
+    }
 }

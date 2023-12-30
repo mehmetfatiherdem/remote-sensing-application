@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-30T14:37:26.617079500Z</date>
-  <millis>1703947046617</millis>
-  <nanos>79500</nanos>
+  <date>2023-12-30T14:53:43.026069300Z</date>
+  <millis>1703948023026</millis>
+  <nanos>69300</nanos>
   <sequence>1</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
@@ -14,9 +14,9 @@
   <message>Logger initialized successfully.</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:26.620079600Z</date>
-  <millis>1703947046620</millis>
-  <nanos>79600</nanos>
+  <date>2023-12-30T14:53:43.028068800Z</date>
+  <millis>1703948023028</millis>
+  <nanos>68800</nanos>
   <sequence>2</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
@@ -26,10 +26,22 @@
   <message>Application starting...</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:27.635742500Z</date>
-  <millis>1703947047635</millis>
-  <nanos>742500</nanos>
+  <date>2023-12-30T14:53:43.118014500Z</date>
+  <millis>1703948023118</millis>
+  <nanos>14500</nanos>
   <sequence>3</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Web interface started on port 8080</message>
+</record>
+<record>
+  <date>2023-12-30T14:53:44.126268100Z</date>
+  <millis>1703948024126</millis>
+  <nanos>268100</nanos>
+  <sequence>4</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
@@ -38,10 +50,10 @@
   <message>Server up&amp;running on port 5000</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:27.635742500Z</date>
-  <millis>1703947047635</millis>
-  <nanos>742500</nanos>
-  <sequence>4</sequence>
+  <date>2023-12-30T14:53:44.127258900Z</date>
+  <millis>1703948024127</millis>
+  <nanos>258900</nanos>
+  <sequence>5</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
@@ -50,10 +62,10 @@
   <message>Server is waiting for a Client....</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:28.643590200Z</date>
-  <millis>1703947048643</millis>
-  <nanos>590200</nanos>
-  <sequence>5</sequence>
+  <date>2023-12-30T14:53:45.141556700Z</date>
+  <millis>1703948025141</millis>
+  <nanos>556700</nanos>
+  <sequence>6</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
@@ -62,10 +74,10 @@
   <message>Gateway waiting for TCP Sensor Client on port 4445</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:29.657474Z</date>
-  <millis>1703947049657</millis>
-  <nanos>474000</nanos>
-  <sequence>6</sequence>
+  <date>2023-12-30T14:53:46.151064700Z</date>
+  <millis>1703948026151</millis>
+  <nanos>64700</nanos>
+  <sequence>7</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
@@ -74,10 +86,10 @@
   <message>Temperature Sensor is connected to the gateway on port 4445</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:30.674585100Z</date>
-  <millis>1703947050674</millis>
-  <nanos>585100</nanos>
-  <sequence>7</sequence>
+  <date>2023-12-30T14:53:47.162759300Z</date>
+  <millis>1703948027162</millis>
+  <nanos>759300</nanos>
+  <sequence>8</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
@@ -86,10 +98,10 @@
   <message>Gateway UDP socket is up&amp;running on port 3334</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:31.683633500Z</date>
-  <millis>1703947051683</millis>
-  <nanos>633500</nanos>
-  <sequence>8</sequence>
+  <date>2023-12-30T14:53:48.178335700Z</date>
+  <millis>1703948028178</millis>
+  <nanos>335700</nanos>
+  <sequence>9</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
@@ -98,10 +110,10 @@
   <message>Humidity sensor udp socket is ready on port 3334</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:32.697314300Z</date>
-  <millis>1703947052697</millis>
-  <nanos>314300</nanos>
-  <sequence>9</sequence>
+  <date>2023-12-30T14:53:49.186564700Z</date>
+  <millis>1703948029186</millis>
+  <nanos>564700</nanos>
+  <sequence>10</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
@@ -110,195 +122,363 @@
   <message>Gateway is connected to the server on port 5000</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:32.712515100Z</date>
-  <millis>1703947052712</millis>
-  <nanos>515100</nanos>
-  <sequence>10</sequence>
-  <logger>main.java.AdvancedLogger</logger>
-  <level>INFO</level>
-  <class>main.java.AdvancedLogger</class>
-  <method>logInfo</method>
-  <thread>39</thread>
-  <message>CONNECTED DEVICE TEMP SENSOR</message>
-</record>
-<record>
-  <date>2023-12-30T14:37:32.713517700Z</date>
-  <millis>1703947052713</millis>
-  <nanos>517700</nanos>
+  <date>2023-12-30T14:53:49.198076100Z</date>
+  <millis>1703948029198</millis>
+  <nanos>76100</nanos>
   <sequence>11</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>40</thread>
-  <message>CONNECTED DEVICE HUMIDITY SENSOR</message>
+  <thread>41</thread>
+  <message>CONNECTED DEVICE TEMP SENSOR</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:33.728345300Z</date>
-  <millis>1703947053728</millis>
-  <nanos>345300</nanos>
+  <date>2023-12-30T14:53:49.199580700Z</date>
+  <millis>1703948029199</millis>
+  <nanos>580700</nanos>
   <sequence>12</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>39</thread>
-  <message>TEMP SENSOR 25 SAT DEC 30 17:37:33 TRT 2023</message>
+  <thread>42</thread>
+  <message>CONNECTED DEVICE HUMIDITY SENSOR</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:33.730344800Z</date>
-  <millis>1703947053730</millis>
-  <nanos>344800</nanos>
+  <date>2023-12-30T14:53:50.218074300Z</date>
+  <millis>1703948030218</millis>
+  <nanos>74300</nanos>
   <sequence>13</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>40</thread>
-  <message>HUMIDITY SENSOR ALIVE SAT DEC 30 17:37:33 TRT 2023</message>
+  <thread>41</thread>
+  <message>TEMP SENSOR 28 SAT DEC 30 17:53:50 TRT 2023</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:34.734337400Z</date>
-  <millis>1703947054734</millis>
-  <nanos>337400</nanos>
+  <date>2023-12-30T14:53:50.219701400Z</date>
+  <millis>1703948030219</millis>
+  <nanos>701400</nanos>
   <sequence>14</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>40</thread>
-  <message>HUMIDITY SENSOR 85 SAT DEC 30 17:37:34 TRT 2023</message>
+  <thread>42</thread>
+  <message>HUMIDITY SENSOR ALIVE SAT DEC 30 17:53:50 TRT 2023</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:36.755214100Z</date>
-  <millis>1703947056755</millis>
-  <nanos>214100</nanos>
+  <date>2023-12-30T14:53:51.226277600Z</date>
+  <millis>1703948031226</millis>
+  <nanos>277600</nanos>
   <sequence>15</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>48</thread>
-  <message>TEMP SENSOR OFF</message>
+  <thread>42</thread>
+  <message>HUMIDITY SENSOR 82 SAT DEC 30 17:53:51 TRT 2023</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:37.729715800Z</date>
-  <millis>1703947057729</millis>
-  <nanos>715800</nanos>
+  <date>2023-12-30T14:53:53.233966900Z</date>
+  <millis>1703948033233</millis>
+  <nanos>966900</nanos>
   <sequence>16</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>39</thread>
-  <message>TEMP SENSOR 20 SAT DEC 30 17:37:37 TRT 2023</message>
+  <thread>50</thread>
+  <message>TEMP SENSOR OFF</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:40.746578200Z</date>
-  <millis>1703947060746</millis>
-  <nanos>578200</nanos>
+  <date>2023-12-30T14:53:54.228299700Z</date>
+  <millis>1703948034228</millis>
+  <nanos>299700</nanos>
   <sequence>17</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>48</thread>
-  <message>HUMIDITY SENSOR OFF</message>
+  <thread>41</thread>
+  <message>TEMP SENSOR 27 SAT DEC 30 17:53:54 TRT 2023</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:40.748578200Z</date>
-  <millis>1703947060748</millis>
-  <nanos>578200</nanos>
+  <date>2023-12-30T14:53:57.226484Z</date>
+  <millis>1703948037226</millis>
+  <nanos>484000</nanos>
   <sequence>18</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>48</thread>
-  <message>TEMP SENSOR OFF</message>
+  <thread>50</thread>
+  <message>HUMIDITY SENSOR OFF</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:41.743046200Z</date>
-  <millis>1703947061743</millis>
-  <nanos>46200</nanos>
+  <date>2023-12-30T14:53:57.228204700Z</date>
+  <millis>1703948037228</millis>
+  <nanos>204700</nanos>
   <sequence>19</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>40</thread>
-  <message>HUMIDITY SENSOR ALIVE SAT DEC 30 17:37:41 TRT 2023</message>
+  <thread>50</thread>
+  <message>TEMP SENSOR OFF</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:41.744558800Z</date>
-  <millis>1703947061744</millis>
-  <nanos>558800</nanos>
+  <date>2023-12-30T14:53:58.220235400Z</date>
+  <millis>1703948038220</millis>
+  <nanos>235400</nanos>
   <sequence>20</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>43</thread>
-  <message>TEMP SENSOR 26 SAT DEC 30 17:37:41 TRT 2023</message>
+  <thread>41</thread>
+  <message>TEMP SENSOR 25 SAT DEC 30 17:53:58 TRT 2023</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:44.753344200Z</date>
-  <millis>1703947064753</millis>
-  <nanos>344200</nanos>
+  <date>2023-12-30T14:53:58.220235400Z</date>
+  <millis>1703948038220</millis>
+  <nanos>235400</nanos>
   <sequence>21</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>48</thread>
-  <message>TEMP SENSOR OFF</message>
+  <thread>42</thread>
+  <message>HUMIDITY SENSOR ALIVE SAT DEC 30 17:53:58 TRT 2023</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:45.743605800Z</date>
-  <millis>1703947065743</millis>
-  <nanos>605800</nanos>
+  <date>2023-12-30T14:54:01.232091300Z</date>
+  <millis>1703948041232</millis>
+  <nanos>91300</nanos>
   <sequence>22</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>39</thread>
-  <message>TEMP SENSOR 21 SAT DEC 30 17:37:45 TRT 2023</message>
+  <thread>50</thread>
+  <message>TEMP SENSOR OFF</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:48.739397600Z</date>
-  <millis>1703947068739</millis>
-  <nanos>397600</nanos>
+  <date>2023-12-30T14:54:02.227183Z</date>
+  <millis>1703948042227</millis>
+  <nanos>183000</nanos>
   <sequence>23</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>48</thread>
-  <message>TEMP SENSOR OFF</message>
+  <thread>45</thread>
+  <message>TEMP SENSOR 24 SAT DEC 30 17:54:02 TRT 2023</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:48.754804700Z</date>
-  <millis>1703947068754</millis>
-  <nanos>804700</nanos>
+  <date>2023-12-30T14:54:05.233290300Z</date>
+  <millis>1703948045233</millis>
+  <nanos>290300</nanos>
   <sequence>24</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>48</thread>
+  <thread>50</thread>
   <message>HUMIDITY SENSOR OFF</message>
 </record>
 <record>
-  <date>2023-12-30T14:37:49.735638100Z</date>
-  <millis>1703947069735</millis>
-  <nanos>638100</nanos>
+  <date>2023-12-30T14:54:05.235285200Z</date>
+  <millis>1703948045235</millis>
+  <nanos>285200</nanos>
   <sequence>25</sequence>
   <logger>main.java.AdvancedLogger</logger>
   <level>INFO</level>
   <class>main.java.AdvancedLogger</class>
   <method>logInfo</method>
-  <thread>43</thread>
-  <message>TEMP SENSOR 24 SAT DEC 30 17:37:49 TRT 2023</message>
+  <thread>50</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:06.226485300Z</date>
+  <millis>1703948046226</millis>
+  <nanos>485300</nanos>
+  <sequence>26</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>41</thread>
+  <message>TEMP SENSOR 20 SAT DEC 30 17:54:06 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:06.226485300Z</date>
+  <millis>1703948046226</millis>
+  <nanos>485300</nanos>
+  <sequence>27</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>42</thread>
+  <message>HUMIDITY SENSOR ALIVE SAT DEC 30 17:54:06 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:09.224365600Z</date>
+  <millis>1703948049224</millis>
+  <nanos>365600</nanos>
+  <sequence>28</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>50</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:10.221915500Z</date>
+  <millis>1703948050221</millis>
+  <nanos>915500</nanos>
+  <sequence>29</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>45</thread>
+  <message>TEMP SENSOR 21 SAT DEC 30 17:54:10 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:13.235317600Z</date>
+  <millis>1703948053235</millis>
+  <nanos>317600</nanos>
+  <sequence>30</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>50</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:13.236317600Z</date>
+  <millis>1703948053236</millis>
+  <nanos>317600</nanos>
+  <sequence>31</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>50</thread>
+  <message>HUMIDITY SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:14.230499100Z</date>
+  <millis>1703948054230</millis>
+  <nanos>499100</nanos>
+  <sequence>32</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>45</thread>
+  <message>TEMP SENSOR 26 SAT DEC 30 17:54:14 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:17.231895200Z</date>
+  <millis>1703948057231</millis>
+  <nanos>895200</nanos>
+  <sequence>33</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>50</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:18.230689300Z</date>
+  <millis>1703948058230</millis>
+  <nanos>689300</nanos>
+  <sequence>34</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>41</thread>
+  <message>TEMP SENSOR 22 SAT DEC 30 17:54:18 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:21.235083Z</date>
+  <millis>1703948061235</millis>
+  <nanos>83000</nanos>
+  <sequence>35</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>50</thread>
+  <message>HUMIDITY SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:21.237087800Z</date>
+  <millis>1703948061237</millis>
+  <nanos>87800</nanos>
+  <sequence>36</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>50</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:22.217247900Z</date>
+  <millis>1703948062217</millis>
+  <nanos>247900</nanos>
+  <sequence>37</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>45</thread>
+  <message>TEMP SENSOR 29 SAT DEC 30 17:54:22 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:25.228337Z</date>
+  <millis>1703948065228</millis>
+  <nanos>337000</nanos>
+  <sequence>38</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>42</thread>
+  <message>HUMIDITY SENSOR 84 SAT DEC 30 17:54:25 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:25.229107800Z</date>
+  <millis>1703948065229</millis>
+  <nanos>107800</nanos>
+  <sequence>39</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>50</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:54:26.223830800Z</date>
+  <millis>1703948066223</millis>
+  <nanos>830800</nanos>
+  <sequence>40</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>41</thread>
+  <message>TEMP SENSOR 21 SAT DEC 30 17:54:26 TRT 2023</message>
 </record>
 </log>
