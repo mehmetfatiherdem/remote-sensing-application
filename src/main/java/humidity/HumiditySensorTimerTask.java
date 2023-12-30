@@ -7,6 +7,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
+import static main.java.AdvancedLogger.logException;
+
 public class HumiditySensorTimerTask implements Runnable {
     private Sensor sensor;
     private HUMIDITY_MESSAGE msg;
@@ -40,6 +42,7 @@ public class HumiditySensorTimerTask implements Runnable {
         try {
             socket.send(packet);
         } catch (IOException e) {
+            logException(e);
             throw new RuntimeException(e);
         }
     }

@@ -22,16 +22,18 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
+import static main.java.AdvancedLogger.*;
+
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
+
+        logInfo("Application starting...");
 
         // initialize server
         Server server = Server.getInstance();
 
         // initialize the gateway
         Gateway gateway = Gateway.getInstance();
-
-        //
 
         // returns 127.0.0.1
         var localHostAddress = InetAddress.getLocalHost();
@@ -45,11 +47,11 @@ public class Main {
         Thread.sleep(1000);
 
         if(tcpServer.getServer() != null){
-            System.out.println("Server up&running on port " + tcpServer.getPort());
+            logInfo("Server up&running on port " + tcpServer.getPort());
         }
 
         if(tcpServer.getSocket() == null){
-            System.out.println("Server is waiting for a Client....");
+            logInfo("Server is waiting for a Client....");
         }
 
         // Gateway TCP connection waiting for Sensor
@@ -60,7 +62,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(tcpServerGateway.getServer() != null){
-            System.out.println("Gateway waiting for TCP Sensor Client on port " + tcpServerGateway.getPort());
+            logInfo("Gateway waiting for TCP Sensor Client on port " + tcpServerGateway.getPort());
         }
 
         // Temperature sensor
@@ -71,7 +73,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(tcpServerGateway.getSocket() != null){
-            System.out.println("Temperature Sensor is connected to the gateway on port " + tcpServerGateway.getPort());
+            logInfo("Temperature Sensor is connected to the gateway on port " + tcpServerGateway.getPort());
         }
 
         // Gateway UDP socket
@@ -82,7 +84,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(udpGateway.getSocket() != null){
-            System.out.println("Gateway UDP socket is up&running on port " + udpGateway.getPort());
+            logInfo("Gateway UDP socket is up&running on port " + udpGateway.getPort());
         }
 
         // Humidity Sensor udp socket
@@ -93,7 +95,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(udpHumidity.getSocket() != null){
-            System.out.println("Humidity sensor udp socket is ready on port " + udpHumidity.getPort());
+            logInfo("Humidity sensor udp socket is ready on port " + udpHumidity.getPort());
         }
 
         // TCP client socket of Gateway to signal server
@@ -104,7 +106,7 @@ public class Main {
         Thread.sleep(1000);
 
         if(tcpServer.getSocket() != null){
-            System.out.println("Gateway is connected to the server on port " + tcpServer.getPort());
+            logInfo("Gateway is connected to the server on port " + tcpServer.getPort());
         }
 
         // min-max temp/humidity values
@@ -116,6 +118,7 @@ public class Main {
         // initialize the sensors
         TemperatureSensor tempSensor = new TemperatureSensor(minTemp, maxTemp);
         HumiditySensor humiditySensor = new HumiditySensor(minHumidity, maxHumidity);
+
 
         // send info to server about the connected devices
         TempSendInfoHandler tempSendInfoHandler =
@@ -134,15 +137,14 @@ public class Main {
                 new GatewaySendHumiditySensorInfoToServerHandler(udpGateway.getSocket(), tcpClientGateway.getSocket());
         gatewaySendHumiditySensorInfoToServerHandler.start();
 
-
-        Thread.sleep(1000); // add a delay here before starting to send the data
-
+        Thread.sleep(1000);
 
         //  initialize the client instances with the corresponding sensors
         HumidityCommunicationHandler humiditySensorClient =
                 new HumidityCommunicationHandler(humiditySensor, udpHumidity.getSocket(), udpHumidity.getAddress(), udpHumidity.getPort());
         TempCommunicationHandler tempSensorClient =
                 new TempCommunicationHandler(tempSensor, tcpTemp.getSocket());
+
 
         // start sending the messages from the clients
         tempSensorClient.sendMessage();
@@ -172,8 +174,8 @@ public class Main {
 
         GatewayServerHandler gatewayServerHandler =
                 new GatewayServerHandler(tcpClientGateway.getSocket(), gateway);
-
         gatewayServerHandler.start();
+
     }
     private static void startHttpServer(Server server1) throws IOException {
         int port = 8080;
@@ -188,6 +190,6 @@ public class Main {
         server.setExecutor(null);  // Use the default executor
         server.start();
 
-        System.out.println("Server started on port " + port);
+        logInfo("Web interface started on port " + port);
     }
 }

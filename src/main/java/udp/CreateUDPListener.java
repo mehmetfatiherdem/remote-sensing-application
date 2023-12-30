@@ -3,6 +3,8 @@ package main.java.udp;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
+import static main.java.AdvancedLogger.logException;
+
 public class CreateUDPListener extends Thread{
     private DatagramSocket socket;
     private int port;
@@ -17,6 +19,7 @@ public class CreateUDPListener extends Thread{
         try {
             socket = new DatagramSocket(port);
         } catch (SocketException e) {
+            logException(e);
             throw new RuntimeException(e);
         }
     }

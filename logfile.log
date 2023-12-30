@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-12-30T14:48:35.924892600Z</date>
+  <millis>1703947715924</millis>
+  <nanos>892600</nanos>
+  <sequence>1</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Logger initialized successfully.</message>
+</record>
+<record>
+  <date>2023-12-30T14:48:35.927893100Z</date>
+  <millis>1703947715927</millis>
+  <nanos>893100</nanos>
+  <sequence>2</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Application starting...</message>
+</record>
+<record>
+  <date>2023-12-30T14:48:36.015599800Z</date>
+  <millis>1703947716015</millis>
+  <nanos>599800</nanos>
+  <sequence>3</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Web interface started on port 8080</message>
+</record>
+<record>
+  <date>2023-12-30T14:48:37.019220Z</date>
+  <millis>1703947717019</millis>
+  <nanos>220000</nanos>
+  <sequence>4</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Server up&amp;running on port 5000</message>
+</record>
+<record>
+  <date>2023-12-30T14:48:37.022320200Z</date>
+  <millis>1703947717022</millis>
+  <nanos>320200</nanos>
+  <sequence>5</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Server is waiting for a Client....</message>
+</record>
+<record>
+  <date>2023-12-30T14:48:38.035238200Z</date>
+  <millis>1703947718035</millis>
+  <nanos>238200</nanos>
+  <sequence>6</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Gateway waiting for TCP Sensor Client on port 4445</message>
+</record>
+<record>
+  <date>2023-12-30T14:48:39.047301Z</date>
+  <millis>1703947719047</millis>
+  <nanos>301000</nanos>
+  <sequence>7</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Temperature Sensor is connected to the gateway on port 4445</message>
+</record>
+</log>

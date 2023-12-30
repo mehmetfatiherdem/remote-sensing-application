@@ -8,6 +8,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.Socket;
 
+import static main.java.AdvancedLogger.logInfo;
+
 public class GatewaySendHumiditySensorInfoToServerHandler  extends Thread {
 
     // TCP w/Server
@@ -38,7 +40,10 @@ public class GatewaySendHumiditySensorInfoToServerHandler  extends Thread {
                     throw new RuntimeException(e);
                 }
 
-                serverOut.writeUTF(Helpers.ByteToStr(buf).toString());
+                String str = Helpers.ByteToStr(buf).toString();
+
+                serverOut.writeUTF(str);
+                logInfo(str);
 
 
                 buf = new byte[65535];

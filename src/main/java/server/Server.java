@@ -36,6 +36,10 @@ public class Server {
 
     public void breakDownMessageAndStore(String[] msgElements){
 
+        if(msgElements[0].equals("TEMP")) setTempSensorOff(false);
+        else if (msgElements[2].equals("ALIVE")) setHumiditySensorOff(false);
+
+
         String timeStampString = msgElements[3] + " " +
                 msgElements[4] + " " + msgElements[5] +
                 " " + msgElements[6] + " " + msgElements[7] +
@@ -43,12 +47,12 @@ public class Server {
 
         Date timeStamp = Helpers.strToDate(timeStampString);
 
-        if(msgElements[0].equals("Temperature")){
+        if(msgElements[0].equals("TEMP")){
             int tempVal = Integer.parseInt(msgElements[2]);
             addTempVal(tempVal);
             addTempMsgTimeStamp(timeStamp);
 
-        } else if (msgElements[0].equals("Humidity")) {
+        } else if (msgElements[0].equals("HUMIDITY")) {
             if(msgElements[2].equals("ALIVE")){
                 addAliveMsgTimeStamp(timeStamp);
             }else{

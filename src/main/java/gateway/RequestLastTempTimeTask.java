@@ -3,6 +3,8 @@ package main.java.gateway;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import static main.java.AdvancedLogger.logException;
+
 public class RequestLastTempTimeTask implements Runnable {
     DataOutputStream out;
     public RequestLastTempTimeTask(DataOutputStream out){
@@ -14,7 +16,8 @@ public class RequestLastTempTimeTask implements Runnable {
         try {;
             out.writeUTF("GET LAST TEMP TIME"); //TODO: discuss this message w/bros
         } catch (IOException i) {
-            System.out.println(i);
+            logException(i);
+
         }
     }
 }

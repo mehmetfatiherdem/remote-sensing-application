@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import static main.java.AdvancedLogger.logException;
+
 public class TempCommunicationHandler{
     private Socket socket;
     private Sensor sensor;
@@ -22,6 +24,7 @@ public class TempCommunicationHandler{
         try {
             out = new DataOutputStream(socket.getOutputStream());
         } catch (IOException i) {
+            logException(i);
             System.out.println(i);
             return;
         }

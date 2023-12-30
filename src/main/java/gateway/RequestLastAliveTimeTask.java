@@ -3,6 +3,8 @@ package main.java.gateway;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import static main.java.AdvancedLogger.logException;
+
 public class RequestLastAliveTimeTask implements Runnable{
     DataOutputStream out;
     public RequestLastAliveTimeTask(DataOutputStream out){
@@ -11,10 +13,11 @@ public class RequestLastAliveTimeTask implements Runnable{
 
     @Override
     public void run() {
-        try {;
-            out.writeUTF("GET LAST ALIVE TIME"); //TODO: discuss this message w/bros
+        try {
+            out.writeUTF("GET LAST ALIVE TIME");
         } catch (IOException i) {
-            System.out.println(i);
+            logException(i);
+            throw new RuntimeException();
         }
     }
 }
