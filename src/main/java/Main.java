@@ -2,6 +2,7 @@ package main.java;
 
 import com.sun.net.httpserver.HttpServer;
 import main.java.gateway.*;
+import main.java.handlers.GetHumidityHandler;
 import main.java.handlers.HumidityHandler;
 import main.java.handlers.TemperatureHandler;
 import main.java.humidity.HumidityCommunicationHandler;
@@ -184,6 +185,9 @@ public class Main {
 
         // Context for handling requests to /humidity
         server.createContext("/humidity", new HumidityHandler(server1));
+
+        // Context for handling requests to /gethumidity
+        server.createContext("/gethumidity", new GetHumidityHandler(server1));
 
         server.setExecutor(null);  // Use the default executor
         server.start();
