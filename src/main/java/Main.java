@@ -3,8 +3,10 @@ package main.java;
 import main.java.gateway.*;
 import main.java.humidity.HumidityCommunicationHandler;
 import main.java.humidity.HumiditySendInfoHandler;
+import main.java.humidity.HumiditySendLastValueHandler;
 import main.java.humidity.HumiditySensor;
 import main.java.server.ServerCommunicationHandler;
+import main.java.server.ServerRequestLastHumidityHandler;
 import main.java.tcp.CreateTCPClient;
 import main.java.tcp.CreateTCPServer;
 import main.java.server.Server;
@@ -26,8 +28,6 @@ public class Main {
 
         // initialize the gateway
         Gateway gateway = Gateway.getInstance();
-
-        //
 
         // returns 127.0.0.1
         var localHostAddress = InetAddress.getLocalHost();
@@ -69,26 +69,26 @@ public class Main {
             System.out.println("Temperature Sensor is connected to the gateway on port " + tcpServerGateway.getPort());
         }
 
-        // Gateway UDP socket
-        CreateUDPListener udpGateway = new CreateUDPListener(Constants.gatewaySensorUDPPort);
-        udpGateway.start();
+        // Gateway Listen UDP socket
+        CreateUDPListener udpListenerGateway = new CreateUDPListener(Constants.listenerGatewaySenderSensorUDPPort);
+        udpListenerGateway.start();
 
         // wait a little for gateway to start
         Thread.sleep(1000);
 
-        if(udpGateway.getSocket() != null){
-            System.out.println("Gateway UDP socket is up&running on port " + udpGateway.getPort());
+        if(udpListenerGateway.getSocket() != null){
+            System.out.println("Gateway Listen UDP socket is up&running on port " + udpListenerGateway.getPort());
         }
 
-        // Humidity Sensor udp socket
-        CreateUDPSender udpHumidity = new CreateUDPSender(localHostAddress, Constants.gatewaySensorUDPPort);
-        udpHumidity.start();
+        // Humidity Sensor Send udp socket
+        CreateUDPSender udpSenderHumidity = new CreateUDPSender(localHostAddress, Constants.listenerGatewaySenderSensorUDPPort);
+        udpSenderHumidity.start();
 
         // wait a little for sensor to start
         Thread.sleep(1000);
 
-        if(udpHumidity.getSocket() != null){
-            System.out.println("Humidity sensor udp socket is ready on port " + udpHumidity.getPort());
+        if(udpSenderHumidity.getSocket() != null){
+            System.out.println("Humidity sensor Send udp socket is ready on port " + udpSenderHumidity.getPort());
         }
 
         // TCP client socket of Gateway to signal server
@@ -118,7 +118,7 @@ public class Main {
         tempSendInfoHandler.sendMessage();
 
         HumiditySendInfoHandler humiditySendInfoHandler =
-                new HumiditySendInfoHandler(humiditySensor, udpHumidity.getSocket(), udpHumidity.getAddress(), udpHumidity.getPort());
+                new HumiditySendInfoHandler(humiditySensor, udpSenderHumidity.getSocket(), udpSenderHumidity.getAddress(), udpSenderHumidity.getPort());
         humiditySendInfoHandler.sendMessage();
 
         GatewaySendTempSensorInfoToServerHandler gatewaySendTempSensorInfoToServerHandler =
@@ -126,7 +126,7 @@ public class Main {
         gatewaySendTempSensorInfoToServerHandler.start();
 
         GatewaySendHumiditySensorInfoToServerHandler gatewaySendHumiditySensorInfoToServerHandler =
-                new GatewaySendHumiditySensorInfoToServerHandler(udpGateway.getSocket(), tcpClientGateway.getSocket());
+                new GatewaySendHumiditySensorInfoToServerHandler(udpListenerGateway.getSocket(), tcpClientGateway.getSocket());
         gatewaySendHumiditySensorInfoToServerHandler.start();
 
 
@@ -135,7 +135,7 @@ public class Main {
 
         //  initialize the client instances with the corresponding sensors
         HumidityCommunicationHandler humiditySensorClient =
-                new HumidityCommunicationHandler(humiditySensor, udpHumidity.getSocket(), udpHumidity.getAddress(), udpHumidity.getPort());
+                new HumidityCommunicationHandler(humiditySensor, udpSenderHumidity.getSocket(), udpSenderHumidity.getAddress(), udpSenderHumidity.getPort());
         TempCommunicationHandler tempSensorClient =
                 new TempCommunicationHandler(tempSensor, tcpTemp.getSocket());
 
@@ -149,7 +149,7 @@ public class Main {
         gatewayTempHandler.start();
 
         GatewayHumidityHandler gatewayHumidityHandler =
-                new GatewayHumidityHandler(udpGateway.getSocket(), tcpClientGateway.getSocket());
+                new GatewayHumidityHandler(udpListenerGateway.getSocket(), tcpClientGateway.getSocket());
         gatewayHumidityHandler.start();
 
         ServerCommunicationHandler serverCommunicationHandler =
@@ -167,7 +167,29 @@ public class Main {
 
         GatewayServerHandler gatewayServerHandler =
                 new GatewayServerHandler(tcpClientGateway.getSocket(), gateway);
-
         gatewayServerHandler.start();
+
+        // request last measured humidity value from the gateway
+
+        Thread.sleep(9000);
+
+        HumiditySendLastValueHandler humiditySendLastValueHandler =
+                new HumiditySendLastValueHandler(humiditySensor, udpSenderHumidity.getSocket(), localHostAddress, udpListenerGateway.getPort());
+        humiditySendLastValueHandler.start();
+
+        GatewaySendLastHumidityValueHandler gatewaySendLastHumidityValueHandler =
+                new GatewaySendLastHumidityValueHandler(udpListenerGateway.getSocket(), tcpClientGateway.getSocket());
+        gatewaySendLastHumidityValueHandler.start();
+
+        GatewayRequestLastHumidityHandler gatewayRequestLastHumidityHandler =
+                new GatewayRequestLastHumidityHandler(udpListenerGateway.getSocket(), tcpClientGateway.getSocket(), localHostAddress, udpSenderHumidity.getPort());
+        gatewayRequestLastHumidityHandler.start();
+
+        ServerRequestLastHumidityHandler serverRequestLastHumidityHandler =
+                new ServerRequestLastHumidityHandler(tcpServer.getSocket());
+        serverRequestLastHumidityHandler.start();
+
+
+
     }
 }

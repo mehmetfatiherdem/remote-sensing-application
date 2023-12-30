@@ -19,6 +19,7 @@ public class Server {
     private final ArrayList<Date> aliveMsgTimeStamp = new ArrayList<>();
     private final ArrayList<Integer> humidityVal = new ArrayList<>();
     private final ArrayList<Date> humidityMsgTimeStamp = new ArrayList<>();
+    private int lastMeasuredHumidityVal;
 
     private boolean isTempSensorOff = false;
     private boolean isHumiditySensorOff = false;
@@ -111,5 +112,13 @@ public class Server {
 
     public void setHumiditySensorOff(boolean humiditySensorOff) {
         isHumiditySensorOff = humiditySensorOff;
+    }
+
+    public int getLastMeasuredHumidityVal() {
+        return lastMeasuredHumidityVal;
+    }
+
+    public void setLastMeasuredHumidityVal(int lastMeasuredHumidityVal) {
+        this.lastMeasuredHumidityVal = lastMeasuredHumidityVal;
     }
 }

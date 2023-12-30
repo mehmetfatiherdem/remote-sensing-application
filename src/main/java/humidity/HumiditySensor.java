@@ -33,4 +33,8 @@ public class HumiditySensor extends Sensor {
         return new SensorMessage(getType(), generateAliveValue(), new Date());
     }
 
+    public SensorMessage generateLastValueMessage(){
+        return new SensorMessage(getType(), getLastMeasuredVal());
+    }
+
 }

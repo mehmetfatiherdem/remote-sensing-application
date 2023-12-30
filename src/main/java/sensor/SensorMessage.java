@@ -17,6 +17,11 @@ public class SensorMessage {
         this.type = type;
     }
 
+    public SensorMessage(SENSOR_TYPE type, int val){
+        this.type = type;
+        this.val = val;
+    }
+
     public byte[] getByteArr(){
         StringBuilder str = new StringBuilder();
         if(val == -1){
@@ -35,13 +40,19 @@ public class SensorMessage {
     }
 
     public String sendTCPSensorInfo(){
-        return "CONNECTED DEVICE INFO: " + type.getName();
+        return "CONNECTED DEVICE INFO " + type.getName();
     }
 
     public byte[] sendUDPSensorInfo(){
         StringBuilder str = new StringBuilder();
-        str.append("CONNECTED DEVICE INFO: ").append(type.getName());
+        str.append("CONNECTED DEVICE INFO ").append(type.getName());
 
+        return str.toString().getBytes();
+    }
+
+    public byte[] getLastHumidityByteArr(){
+        StringBuilder str = new StringBuilder();
+        str.append(type.getName()).append(" LAST ").append(val);
         return str.toString().getBytes();
     }
 

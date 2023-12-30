@@ -7,12 +7,12 @@ import java.util.concurrent.TimeUnit;
 
 public class HumiditySendInfoHandler {
     private DatagramSocket socket;
-    private HumiditySensor sensor;
+    private HumiditySensor humiditySensor;
     private InetAddress address;
     private int port;
 
-    public HumiditySendInfoHandler(HumiditySensor sensor, DatagramSocket socket, InetAddress address, int port) {
-        this.sensor = sensor;
+    public HumiditySendInfoHandler(HumiditySensor humiditySensor, DatagramSocket socket, InetAddress address, int port) {
+        this.humiditySensor = humiditySensor;
         this.socket = socket;
         this.address = address;
         this.port = port;
@@ -22,7 +22,7 @@ public class HumiditySendInfoHandler {
     public void sendMessage() {
 
         HumiditySensorToGatewaySensorInfoTimerTask sensorToGatewaySensorInfoTimerTask =
-                new HumiditySensorToGatewaySensorInfoTimerTask(sensor, socket, address, port);
+                new HumiditySensorToGatewaySensorInfoTimerTask(humiditySensor, socket, address, port);
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
         executor.schedule(sensorToGatewaySensorInfoTimerTask, 0, TimeUnit.SECONDS);

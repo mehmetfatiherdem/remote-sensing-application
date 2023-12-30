@@ -8,7 +8,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.Socket;
 
-public class GatewaySendHumiditySensorInfoToServerHandler extends Thread {
+public class GatewaySendLastHumidityValueHandler extends Thread {
 
     // TCP w/Server
     private Socket tcpSendToServerSocket;
@@ -18,7 +18,7 @@ public class GatewaySendHumiditySensorInfoToServerHandler extends Thread {
     private DatagramSocket socket;
     private byte[] buf = new byte[65535];
 
-    public GatewaySendHumiditySensorInfoToServerHandler(DatagramSocket socket, Socket tcpSendToServerSocket) {
+    public GatewaySendLastHumidityValueHandler(DatagramSocket socket, Socket tcpSendToServerSocket) {
         this.socket = socket;
         this.tcpSendToServerSocket = tcpSendToServerSocket;
     }
@@ -38,10 +38,14 @@ public class GatewaySendHumiditySensorInfoToServerHandler extends Thread {
                     throw new RuntimeException(e);
                 }
 
-                serverOut.writeUTF(Helpers.ByteToStr(buf).toString());
+                var msg = Helpers.ByteToStr(buf).toString();
 
+                var msgArr = msg.split(" ");
 
-                buf = new byte[65535];
+                if(msgArr[0].equals("HUMIDITY") && msgArr[2].equals("LAST")){
+                    serverOut.writeUTF(msg);
+                    buf = new byte[65535];
+                }
 
                 //send to serve logic here??
             }

@@ -39,7 +39,7 @@ public class GatewayServerHandler extends Thread{
                 try {
                     // read server message
                     msg = in.readUTF();
-                    System.out.println("temp timestamp coming from the server: " + msg);
+                    System.out.println("msg coming from the server: " + msg);
 
                     String[] msgArr = msg.split(" ");
                     if(msgArr[0].equals("TEMP")){

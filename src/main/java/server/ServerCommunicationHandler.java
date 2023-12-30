@@ -31,11 +31,11 @@ public class ServerCommunicationHandler extends Thread{
             while (true) {
                 try {
                     msg = in.readUTF();
-                    System.out.println("gateway signal to server ===>" + msg);
+                    System.out.println("gateway signal to server ===> " + msg);
 
                     String[] msgElements = msg.split(" ");
 
-                    if(!msgElements[2].equals("INFO:")) {
+                    if(!msgElements[2].equals("INFO")) {
 
                         if (msgElements[0].equals("GET") && msgElements[2].equals("TEMP")) {
                             var timeStampArr = server.getTempMsgTimeStamp();
@@ -59,6 +59,8 @@ public class ServerCommunicationHandler extends Thread{
                             server.setTempSensorOff(true);
                         } else if (msgElements[0].equals("HUMIDITY") && msgElements[2].equals("OFF")) {
                             server.setHumiditySensorOff(true);
+                        } else if (msgElements[0].equals("HUMIDITY") && msgElements[1].equals("LAST")) {
+                            server.setLastMeasuredHumidityVal(Integer.parseInt(msgElements[2]));
                         } else {
                             // break down the message and store the info
                             server.breakDownMessageAndStore(msgElements);
