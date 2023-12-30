@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import static main.java.AdvancedLogger.logException;
+
 public class CreateTCPClient extends Thread{
     private Socket socket;
     private InetAddress address;
@@ -18,6 +20,7 @@ public class CreateTCPClient extends Thread{
         try {
             socket = new Socket(address, port);
         } catch (IOException e) {
+            logException(e);
             throw new RuntimeException(e);
         }
 

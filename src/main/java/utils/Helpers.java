@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import static main.java.AdvancedLogger.logException;
+
 public class Helpers {
     public static StringBuilder ByteToStr(byte[] a) {
         if (a == null) return null;
@@ -25,6 +27,7 @@ public class Helpers {
         try {
             timeStamp = sdf.parse(str);
         } catch (ParseException e) {
+            logException(e);
             throw new RuntimeException(e);
         }
         return  timeStamp;

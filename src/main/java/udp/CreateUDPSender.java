@@ -3,6 +3,9 @@ package main.java.udp;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+
+import static main.java.AdvancedLogger.logException;
+
 public class CreateUDPSender extends Thread{
     private DatagramSocket socket;
     private InetAddress address;
@@ -18,6 +21,7 @@ public class CreateUDPSender extends Thread{
         try {
             socket = new DatagramSocket();
         } catch (SocketException e) {
+            logException(e);
             throw new RuntimeException(e);
         }
     }

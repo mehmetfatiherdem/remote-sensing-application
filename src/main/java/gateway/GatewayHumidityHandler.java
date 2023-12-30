@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.Socket;
-import java.net.SocketException;
+
+import static main.java.AdvancedLogger.*;
 
 
 public class GatewayHumidityHandler extends Thread {
@@ -37,10 +38,14 @@ public class GatewayHumidityHandler extends Thread {
                 try {
                     socket.receive(packet);
                 } catch (IOException e) {
+                    logException(e);
                     throw new RuntimeException(e);
+
                 }
 
-                serverOut.writeUTF(Helpers.ByteToStr(buf).toString());
+                String str = Helpers.ByteToStr(buf).toString();
+
+                serverOut.writeUTF(str);
 
 
                 buf = new byte[65535];
@@ -51,6 +56,7 @@ public class GatewayHumidityHandler extends Thread {
             //TODO: socket close here?
 
         } catch (IOException e) {
+            logException(e);
             throw new RuntimeException(e);
         }
 

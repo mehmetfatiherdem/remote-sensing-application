@@ -5,6 +5,8 @@ import main.java.sensor.Sensor;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import static main.java.AdvancedLogger.logException;
+
 public class TempSensorToGatewaySensorInfoTimerTask implements Runnable{
 
     private Sensor sensor;
@@ -21,6 +23,7 @@ public class TempSensorToGatewaySensorInfoTimerTask implements Runnable{
             var info = sensor.generateInfoMessage().sendTCPSensorInfo();
             out.writeUTF(info);
         } catch (IOException i) {
+            logException(i);
             System.out.println(i);
         }
     }
