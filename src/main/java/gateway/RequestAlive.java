@@ -6,13 +6,10 @@ import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import static main.java.AdvancedLogger.logException;
-
-public class RequestTemp {
-
+public class RequestAlive {
     private Socket socket;
 
-    public RequestTemp(Socket socket) {
+    public RequestAlive(Socket socket) {
         this.socket = socket;
     }
 
@@ -21,16 +18,15 @@ public class RequestTemp {
         try {
             out = new DataOutputStream(socket.getOutputStream());
         } catch (IOException i) {
-            logException(i);
             System.out.println(i);
             return;
         }
 
-        RequestLastTempTimeTask task = new RequestLastTempTimeTask(out);
+        RequestLastAliveTimeTask task = new RequestLastAliveTimeTask(out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        executor.scheduleAtFixedRate(task, 3, 3, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(task, 7, 7, TimeUnit.SECONDS);
 
         //Close connection logic??
     }
@@ -38,5 +34,4 @@ public class RequestTemp {
     public Socket getSocket() {
         return socket;
     }
-
 }

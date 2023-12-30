@@ -3,7 +3,6 @@ package main.java.gateway;
 import main.java.utils.Helpers;
 
 import java.io.IOException;
-import java.net.SocketException;
 import java.util.Date;
 
 /*
@@ -38,6 +37,12 @@ public class Gateway {
         Date date = Helpers.strToDate(timeStamp);
 
         return Helpers.calculateSecondsPassed(date) >= 3;
+    }
+
+    public boolean isHumiditySensorOff(String timeStamp){
+        Date date = Helpers.strToDate(timeStamp);
+
+        return Helpers.calculateSecondsPassed(date) >= 7;
     }
 
 }

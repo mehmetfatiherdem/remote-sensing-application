@@ -1,4 +1,6 @@
-package main.java.gateway;
+package main.java.temp;
+
+import main.java.sensor.Sensor;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -6,31 +8,30 @@ import java.net.Socket;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import static main.java.AdvancedLogger.logException;
-
-public class RequestTemp {
-
+public class TempSendInfoHandler {
     private Socket socket;
+    private TemperatureSensor sensor;
 
-    public RequestTemp(Socket socket) {
+    public TempSendInfoHandler(TemperatureSensor sensor, Socket socket) {
+        this.sensor = sensor;
         this.socket = socket;
     }
 
-    public void request(){
+    public void sendMessage(){
         DataOutputStream out;
         try {
             out = new DataOutputStream(socket.getOutputStream());
         } catch (IOException i) {
-            logException(i);
             System.out.println(i);
             return;
         }
 
-        RequestLastTempTimeTask task = new RequestLastTempTimeTask(out);
+        TempSensorToGatewaySensorInfoTimerTask tempSensorToGatewaySensorInfoTimerTask =
+                   new TempSensorToGatewaySensorInfoTimerTask(sensor, out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        executor.scheduleAtFixedRate(task, 3, 3, TimeUnit.SECONDS);
+        executor.schedule(tempSensorToGatewaySensorInfoTimerTask, 0, TimeUnit.SECONDS);
 
         //Close connection logic??
     }
@@ -39,4 +40,7 @@ public class RequestTemp {
         return socket;
     }
 
+    public Sensor getSensor() {
+        return sensor;
+    }
 }

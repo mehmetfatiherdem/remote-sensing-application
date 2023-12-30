@@ -1,20 +1,82 @@
-Ara 26, 2023 5:07:20 ÖS main.java.Main initLogger
+Dec 30, 2023 1:08:13 PM main.java.AdvancedLogger logInfo
 INFO: Logger initialized successfully.
-Ara 26, 2023 5:07:20 ÖS main.java.Main main
+Dec 30, 2023 1:08:13 PM main.java.AdvancedLogger logInfo
 INFO: Application starting...
-Ara 26, 2023 5:07:21 ÖS main.java.Main main
+Dec 30, 2023 1:08:14 PM main.java.AdvancedLogger logInfo
 INFO: Server up&running on port 5000
-Ara 26, 2023 5:07:21 ÖS main.java.Main main
+Dec 30, 2023 1:08:14 PM main.java.AdvancedLogger logInfo
 INFO: Server is waiting for a Client....
-Ara 26, 2023 5:07:22 ÖS main.java.Main main
+Dec 30, 2023 1:08:15 PM main.java.AdvancedLogger logInfo
 INFO: Gateway waiting for TCP Sensor Client on port 4445
-Ara 26, 2023 5:07:23 ÖS main.java.Main main
+Dec 30, 2023 1:08:16 PM main.java.AdvancedLogger logInfo
 INFO: Temperature Sensor is connected to the gateway on port 4445
-Ara 26, 2023 5:07:24 ÖS main.java.Main main
+Dec 30, 2023 1:08:17 PM main.java.AdvancedLogger logInfo
 INFO: Gateway UDP socket is up&running on port 3334
-Ara 26, 2023 5:07:25 ÖS main.java.Main main
+Dec 30, 2023 1:08:18 PM main.java.AdvancedLogger logInfo
 INFO: Humidity sensor udp socket is ready on port 3334
-Ara 26, 2023 5:07:26 ÖS main.java.Main main
+Dec 30, 2023 1:08:19 PM main.java.AdvancedLogger logInfo
 INFO: Gateway is connected to the server on port 5000
-Ara 26, 2023 5:07:26 ÖS main.java.Main main
+Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>CONNECTED DEVICE INFO: TEMP SENSOR
+Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>CONNECTED DEVICE INFO: HUMIDITY SENSOR
+Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>TEMP SENSOR 28 SAT DEC 30 13:08:20 TRT 2023
+Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
 INFO: Application exiting...
+Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>HUMIDITY SENSOR ALIVE SAT DEC 30 13:08:20 TRT 2023
+Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>GET LAST TEMP TIME
+Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
+INFO: TEMP SENSOR SAT DEC 30 13:08:20 TRT 2023
+Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
+INFO: temp timestamp coming from the server: TEMP SENSOR SAT DEC 30 13:08:20 TRT 2023
+Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
+INFO: TEMP SENSOR OFF at SAT DEC 30 13:08:23 TRT 2023
+Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>TEMP SENSOR OFF at SAT DEC 30 13:08:23 TRT 2023
+Dec 30, 2023 1:08:24 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>TEMP SENSOR 23 SAT DEC 30 13:08:24 TRT 2023
+Dec 30, 2023 1:08:26 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>HUMIDITY SENSOR 84 SAT DEC 30 13:08:26 TRT 2023
+Dec 30, 2023 1:08:26 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>GET LAST TEMP TIME
+Dec 30, 2023 1:08:26 PM main.java.AdvancedLogger logInfo
+INFO: TEMP SENSOR SAT DEC 30 13:08:24 TRT 2023
+Dec 30, 2023 1:08:26 PM main.java.AdvancedLogger logInfo
+INFO: temp timestamp coming from the server: TEMP SENSOR SAT DEC 30 13:08:24 TRT 2023
+Dec 30, 2023 1:08:27 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>GET LAST ALIVE TIME
+Dec 30, 2023 1:08:27 PM main.java.AdvancedLogger logInfo
+INFO: HUMIDITY SENSOR SAT DEC 30 13:08:20 TRT 2023
+Dec 30, 2023 1:08:27 PM main.java.AdvancedLogger logInfo
+INFO: temp timestamp coming from the server: HUMIDITY SENSOR SAT DEC 30 13:08:20 TRT 2023
+Dec 30, 2023 1:08:27 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>HUMIDITY SENSOR OFF at SAT DEC 30 13:08:27 TRT 2023
+Dec 30, 2023 1:08:28 PM main.java.AdvancedLogger logInfo
+INFO: TEMP SENSOR 25 SAT DEC 30 13:08:28 TRT 2023
+Dec 30, 2023 1:08:28 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>TEMP SENSOR 25 SAT DEC 30 13:08:28 TRT 2023
+Dec 30, 2023 1:08:28 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>HUMIDITY SENSOR ALIVE SAT DEC 30 13:08:28 TRT 2023
+Dec 30, 2023 1:08:29 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>HUMIDITY SENSOR 88 SAT DEC 30 13:08:29 TRT 2023
+Dec 30, 2023 1:08:29 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>GET LAST TEMP TIME
+Dec 30, 2023 1:08:29 PM main.java.AdvancedLogger logInfo
+INFO: TEMP SENSOR SAT DEC 30 13:08:28 TRT 2023
+Dec 30, 2023 1:08:29 PM main.java.AdvancedLogger logInfo
+INFO: temp timestamp coming from the server: TEMP SENSOR SAT DEC 30 13:08:28 TRT 2023
+Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>GET LAST TEMP TIME
+Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
+INFO: TEMP SENSOR SAT DEC 30 13:08:28 TRT 2023
+Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>TEMP SENSOR 27 SAT DEC 30 13:08:32 TRT 2023
+Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
+INFO: temp timestamp coming from the server: TEMP SENSOR SAT DEC 30 13:08:28 TRT 2023
+Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
+INFO: TEMP SENSOR OFF at SAT DEC 30 13:08:32 TRT 2023
+Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
+INFO: gateway signal to server ===>TEMP SENSOR OFF at SAT DEC 30 13:08:32 TRT 2023

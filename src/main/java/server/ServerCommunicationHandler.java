@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import static main.java.AdvancedLogger.*;
+import static main.java.AdvancedLogger.logInfo;
 
 public class ServerCommunicationHandler extends Thread{
 
@@ -37,23 +38,38 @@ public class ServerCommunicationHandler extends Thread{
 
                     String[] msgElements = msg.split(" ");
 
-                    if(msgElements[0].equals("GET") && msgElements[2].equals("TEMP")){
-                        var timeStampArr = server.getTempMsgTimeStamp();
-                        if(timeStampArr.size() == 0){
-                            logInfo("Temperature Sensor");
-                            out.writeUTF("Temperature Sensor");
-                        }else{
-                            var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
-                            logInfo("Temperature Sensor"+timeStamp);
-                            out.writeUTF("Temperature Sensor " + timeStamp);
-                        }
+                    if(!msgElements[2].equals("INFO:")) {
 
-                    } else if(msgElements[2].equals("OFF")){
-                        server.setTempSensorOff(true);
-                    }
-                    else{
-                        // break down the message and store the info
-                        server.breakDownMessageAndStore(msgElements);
+                        if (msgElements[0].equals("GET") && msgElements[2].equals("TEMP")) {
+                            var timeStampArr = server.getTempMsgTimeStamp();
+                            if (timeStampArr.size() == 0) {
+                                logInfo("TEMP SENSOR VALUE NOT FOUND");
+                                out.writeUTF("TEMP SENSOR VALUE NOT FOUND");
+                            } else {
+                                var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
+                                logInfo("TEMP SENSOR " + timeStamp.toUpperCase());
+                                out.writeUTF("TEMP SENSOR " + timeStamp.toUpperCase());
+                            }
+
+                        } else if (msgElements[0].equals("GET") && msgElements[2].equals("ALIVE")) {
+                            var timeStampArr = server.getAliveMsgTimeStamp();
+                            if (timeStampArr.size() == 0) {
+                                logInfo("HUMIDITY SENSOR VALUE NOT FOUND");
+                                out.writeUTF("HUMIDITY SENSOR VALUE NOT FOUND");
+                            } else {
+                                var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
+                                logInfo("HUMIDITY SENSOR " + timeStamp.toUpperCase());
+                                out.writeUTF("HUMIDITY SENSOR " + timeStamp.toUpperCase());
+                            }
+
+                        } else if (msgElements[0].equals("TEMP") && msgElements[2].equals("OFF")) {
+                            server.setTempSensorOff(true);
+                        } else if (msgElements[0].equals("HUMIDITY") && msgElements[2].equals("OFF")) {
+                            server.setHumiditySensorOff(true);
+                        } else {
+                            // break down the message and store the info
+                            server.breakDownMessageAndStore(msgElements);
+                        }
                     }
 
                 }

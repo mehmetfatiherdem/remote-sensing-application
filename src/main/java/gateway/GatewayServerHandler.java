@@ -44,19 +44,31 @@ public class GatewayServerHandler extends Thread{
                     logInfo("temp timestamp coming from the server: " + msg);
 
                     String[] msgArr = msg.split(" ");
-                    if(msgArr[0].equals("Temperature")){
-                        if(msgArr.length == 2){
+                    if(msgArr[0].equals("TEMP")){
+                        if(msgArr[2].equals("VALUE") && msgArr[3].equals("NOT") && msgArr[4].equals("FOUND")){
 
                             // send temp sensor message to the server
-                            logInfo("TEMP SENSOR OFF at " + new Date());
-                            out.writeUTF("TEMP SENSOR OFF at " + new Date());
+                            logInfo("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
+                            out.writeUTF("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
 
                         } else if(gateway.isTempSensorOff(msgArr[2] + " " +
                                 msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
                                 msgArr[7])){
                             // send temp sensor message to the server
-                            logInfo("TEMP SENSOR OFF at " + new Date());
-                            out.writeUTF("TEMP SENSOR OFF at " + new Date());
+                            logInfo("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
+                            out.writeUTF("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
+                        }
+                    } if(msgArr[0].equals("HUMIDITY")){
+                        if(msgArr[2].equals("VALUE") && msgArr[3].equals("NOT") && msgArr[4].equals("FOUND")){
+
+                            // send temp sensor message to the server
+                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date().toString().toUpperCase());
+
+                        } else if(gateway.isHumiditySensorOff(msgArr[2] + " " +
+                                msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
+                                msgArr[7])){
+                            // send temp sensor message to the server
+                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date().toString().toUpperCase());
                         }
                     }
 

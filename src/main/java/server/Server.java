@@ -21,6 +21,7 @@ public class Server {
     private final ArrayList<Date> humidityMsgTimeStamp = new ArrayList<>();
 
     private boolean isTempSensorOff = false;
+    private boolean isHumiditySensorOff = false;
 
     public Server() {
 
@@ -42,12 +43,12 @@ public class Server {
 
         Date timeStamp = Helpers.strToDate(timeStampString);
 
-        if(msgElements[0].equals("Temperature")){
+        if(msgElements[0].equals("TEMP")){
             int tempVal = Integer.parseInt(msgElements[2]);
             addTempVal(tempVal);
             addTempMsgTimeStamp(timeStamp);
 
-        } else if (msgElements[0].equals("Humidity")) {
+        } else if (msgElements[0].equals("HUMIDITY")) {
             if(msgElements[2].equals("ALIVE")){
                 addAliveMsgTimeStamp(timeStamp);
             }else{
@@ -102,5 +103,13 @@ public class Server {
 
     public void setTempSensorOff(boolean tempSensorOff) {
         isTempSensorOff = tempSensorOff;
+    }
+
+    public boolean isHumiditySensorOff() {
+        return isHumiditySensorOff;
+    }
+
+    public void setHumiditySensorOff(boolean humiditySensorOff) {
+        isHumiditySensorOff = humiditySensorOff;
     }
 }

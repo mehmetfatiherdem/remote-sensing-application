@@ -30,14 +30,10 @@ public class TempCommunicationHandler{
         }
 
         TempSensorTimerTask task = new TempSensorTimerTask(sensor, out);
-        //SensorToGatewaySensorInfoTimerTask sensorToGatewaySensorInfoTimerTask =
-        //           new SensorToGatewaySensorInfoTimerTask(sensor, out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        // executor.schedule(sensorToGatewaySensorInfoTimerTask, 0, TimeUnit.SECONDS);
-
-        executor.scheduleAtFixedRate(task, 0, 4, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(task, 0, 4, TimeUnit.SECONDS); //TODO: change period to 1 before sending
 
         //Close connection logic??
     }
