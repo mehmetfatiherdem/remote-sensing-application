@@ -22,15 +22,14 @@ public class RequestTemp {
             out = new DataOutputStream(socket.getOutputStream());
         } catch (IOException i) {
             logException(i);
-            System.out.println(i);
-            return;
+            throw new RuntimeException();
         }
 
         RequestLastTempTimeTask task = new RequestLastTempTimeTask(out);
 
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
 
-        executor.scheduleAtFixedRate(task, 3, 3, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
 
         //Close connection logic??
     }

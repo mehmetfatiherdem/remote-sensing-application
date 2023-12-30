@@ -5,7 +5,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Date;
 import static main.java.AdvancedLogger.*;
 import static main.java.AdvancedLogger.logInfo;
 
@@ -41,37 +40,40 @@ public class GatewayServerHandler extends Thread{
                 try {
                     // read server message
                     msg = in.readUTF();
-                    logInfo("temp timestamp coming from the server: " + msg);
+                    // logInfo("temp timestamp coming from the server: " + msg);
 
                     String[] msgArr = msg.split(" ");
-                    if(msgArr[0].equals("TEMP")){
-                        if(msgArr[2].equals("VALUE") && msgArr[3].equals("NOT") && msgArr[4].equals("FOUND")){
+                    if(!msgArr[2].equals("OFF")){
+                        if(msgArr[0].equals("TEMP")){
+                            if(msgArr[2].equals("VALUE") && msgArr[3].equals("NOT") && msgArr[4].equals("FOUND")){
 
-                            // send temp sensor message to the server
-                            logInfo("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
-                            out.writeUTF("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
+                                // send temp sensor message to the server
+                                logInfo("TEMP SENSOR OFF");
+                                out.writeUTF("TEMP SENSOR OFF");
 
-                        } else if(gateway.isTempSensorOff(msgArr[2] + " " +
-                                msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
-                                msgArr[7])){
-                            // send temp sensor message to the server
-                            logInfo("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
-                            out.writeUTF("TEMP SENSOR OFF at " + new Date().toString().toUpperCase());
-                        }
-                    } if(msgArr[0].equals("HUMIDITY")){
-                        if(msgArr[2].equals("VALUE") && msgArr[3].equals("NOT") && msgArr[4].equals("FOUND")){
+                            } else if(gateway.isTempSensorOff(msgArr[2] + " " +
+                                    msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
+                                    msgArr[7])){
+                                // send temp sensor message to the server
+                                logInfo("TEMP SENSOR OFF");
+                                out.writeUTF("TEMP SENSOR OFF");
+                            }
+                        } if(msgArr[0].equals("HUMIDITY")){
+                            if(msgArr[2].equals("VALUE") && msgArr[3].equals("NOT") && msgArr[4].equals("FOUND")){
 
-                            // send temp sensor message to the server
-                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date().toString().toUpperCase());
+                                // send temp sensor message to the server
+                                logInfo("HUMIDITY SENSOR OFF");
+                                out.writeUTF("HUMIDITY SENSOR OFF");
 
-                        } else if(gateway.isHumiditySensorOff(msgArr[2] + " " +
-                                msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
-                                msgArr[7])){
-                            // send temp sensor message to the server
-                            out.writeUTF("HUMIDITY SENSOR OFF at " + new Date().toString().toUpperCase());
+                            } else if(gateway.isHumiditySensorOff(msgArr[2] + " " +
+                                    msgArr[3] + " " + msgArr[4] + " " + msgArr[5] + " " + msgArr[6] + " " +
+                                    msgArr[7])){
+                                // send temp sensor message to the server
+                                logInfo("HUMIDITY SENSOR OFF");
+                                out.writeUTF("HUMIDITY SENSOR OFF");
+                            }
                         }
                     }
-
 
                 }
                 catch(IOException i) {
@@ -83,7 +85,7 @@ public class GatewayServerHandler extends Thread{
         }
         catch(IOException i) {
             logException(i);
-            System.out.println(i);
+            throw new RuntimeException(i);
         }
     }
 }

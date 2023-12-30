@@ -17,18 +17,14 @@ import main.java.utils.Constants;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.SimpleFormatter;
 
 import static main.java.AdvancedLogger.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        initLogger();
 
         logInfo("Application starting...");
+
         // initialize server
         Server server = Server.getInstance();
 
@@ -118,6 +114,7 @@ public class Main {
         TemperatureSensor tempSensor = new TemperatureSensor(minTemp, maxTemp);
         HumiditySensor humiditySensor = new HumiditySensor(minHumidity, maxHumidity);
 
+
         // send info to server about the connected devices
         TempSendInfoHandler tempSendInfoHandler =
                 new TempSendInfoHandler(tempSensor, tcpTemp.getSocket());
@@ -135,15 +132,14 @@ public class Main {
                 new GatewaySendHumiditySensorInfoToServerHandler(udpGateway.getSocket(), tcpClientGateway.getSocket());
         gatewaySendHumiditySensorInfoToServerHandler.start();
 
-
-        Thread.sleep(1000); // add a delay here before starting to send the data
-
+        Thread.sleep(1000);
 
         //  initialize the client instances with the corresponding sensors
         HumidityCommunicationHandler humiditySensorClient =
                 new HumidityCommunicationHandler(humiditySensor, udpHumidity.getSocket(), udpHumidity.getAddress(), udpHumidity.getPort());
         TempCommunicationHandler tempSensorClient =
                 new TempCommunicationHandler(tempSensor, tcpTemp.getSocket());
+
 
         // start sending the messages from the clients
         tempSensorClient.sendMessage();
@@ -173,31 +169,8 @@ public class Main {
 
         GatewayServerHandler gatewayServerHandler =
                 new GatewayServerHandler(tcpClientGateway.getSocket(), gateway);
-
         gatewayServerHandler.start();
-        logInfo("Application exiting...");
-    }
-    private static void initLogger() {
-        logInfo("Initializing logger...");
 
-        try {
-            LOGGER.setLevel(Level.INFO);
-
-            // Create a console handler
-            ConsoleHandler consoleHandler = new ConsoleHandler();
-            consoleHandler.setLevel(Level.INFO);
-            LOGGER.addHandler(consoleHandler);
-
-            // Create a file handler with a custom formatter
-            FileHandler fileHandler = new FileHandler("logfile.log");
-            fileHandler.setLevel(Level.INFO);
-            fileHandler.setFormatter(new SimpleFormatter()); // Use a SimpleFormatter for human-readable logs
-            LOGGER.addHandler(fileHandler);
-
-            logInfo("Logger initialized successfully.");
-        } catch (SecurityException | IOException e) {
-            logInfo("SecurityException during logger initialization: " + e.getMessage());
-        }
     }
 
 }

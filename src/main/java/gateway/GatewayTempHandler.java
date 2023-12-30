@@ -57,8 +57,8 @@ public class GatewayTempHandler extends Thread{
 
         }
         catch(IOException i) {
-            System.out.println(i);
             logException(i);
+            throw new RuntimeException();
         }
     }
 }

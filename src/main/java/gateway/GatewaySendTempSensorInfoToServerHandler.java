@@ -6,6 +6,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import static main.java.AdvancedLogger.logException;
+import static main.java.AdvancedLogger.logInfo;
+
 public class GatewaySendTempSensorInfoToServerHandler extends Thread{
 
     // TCP w/Server
@@ -42,17 +45,19 @@ public class GatewaySendTempSensorInfoToServerHandler extends Thread{
 
                     // send temp sensor message to the server
                     serverOut.writeUTF(msg);
-
+                    logInfo(msg);
 
                 }
                 catch(IOException i) {
-                    throw new RuntimeException(i);
+                    logException(i);
+                    throw new RuntimeException();
                 }
             }
 
         }
         catch(IOException i) {
-            System.out.println(i);
+            logException(i);
+            throw new RuntimeException();
         }
     }
 }

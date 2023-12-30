@@ -35,12 +35,12 @@ public class SensorMessage {
     }
 
     public String sendTCPSensorInfo(){
-        return "CONNECTED DEVICE INFO: " + type.getName();
+        return "CONNECTED DEVICE " + type.getName();
     }
 
     public byte[] sendUDPSensorInfo(){
         StringBuilder str = new StringBuilder();
-        str.append("CONNECTED DEVICE INFO: ").append(type.getName());
+        str.append("CONNECTED DEVICE ").append(type.getName());
 
         return str.toString().getBytes();
     }

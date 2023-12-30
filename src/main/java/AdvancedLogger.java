@@ -1,5 +1,6 @@
 package main.java;
 
+import java.io.IOException;
 import java.util.logging.*;
 
 public class AdvancedLogger {
@@ -7,21 +8,21 @@ public class AdvancedLogger {
     public static final Logger LOGGER = Logger.getLogger(AdvancedLogger.class.getName());
 
     static {
+            logInfo("Initializing logger...");
         try {
-            // Customize the logging format
-            Handler consoleHandler = new ConsoleHandler();
-            consoleHandler.setFormatter(new CustomFormatter());
-            LOGGER.addHandler(consoleHandler);
-
             // Set log level (e.g., INFO, WARNING, SEVERE)
             LOGGER.setLevel(Level.INFO);
 
             // Uncomment the following line if you want to log to a file
-            // LOGGER.addHandler(new FileHandler("logfile.log"));
+            LOGGER.addHandler(new FileHandler("logfile.log"));
+
+            logInfo("Logger initialized successfully.");
 
         } catch (SecurityException e) {
             // Handle SecurityException
-            e.printStackTrace();
+            logInfo("SecurityException during logger initialization: " + e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -42,12 +43,4 @@ public class AdvancedLogger {
         LOGGER.log(Level.SEVERE, "Exception occurred", e);
     }
 
-    private static class CustomFormatter extends Formatter {
-        @Override
-        public String format(LogRecord record) {
-            return "[" + record.getLevel() + "] " +
-                    record.getSourceClassName() + " - " +
-                    record.getMessage() + "\n";
-        }
-    }
 }

@@ -1,82 +1,304 @@
-Dec 30, 2023 1:08:13 PM main.java.AdvancedLogger logInfo
-INFO: Logger initialized successfully.
-Dec 30, 2023 1:08:13 PM main.java.AdvancedLogger logInfo
-INFO: Application starting...
-Dec 30, 2023 1:08:14 PM main.java.AdvancedLogger logInfo
-INFO: Server up&running on port 5000
-Dec 30, 2023 1:08:14 PM main.java.AdvancedLogger logInfo
-INFO: Server is waiting for a Client....
-Dec 30, 2023 1:08:15 PM main.java.AdvancedLogger logInfo
-INFO: Gateway waiting for TCP Sensor Client on port 4445
-Dec 30, 2023 1:08:16 PM main.java.AdvancedLogger logInfo
-INFO: Temperature Sensor is connected to the gateway on port 4445
-Dec 30, 2023 1:08:17 PM main.java.AdvancedLogger logInfo
-INFO: Gateway UDP socket is up&running on port 3334
-Dec 30, 2023 1:08:18 PM main.java.AdvancedLogger logInfo
-INFO: Humidity sensor udp socket is ready on port 3334
-Dec 30, 2023 1:08:19 PM main.java.AdvancedLogger logInfo
-INFO: Gateway is connected to the server on port 5000
-Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>CONNECTED DEVICE INFO: TEMP SENSOR
-Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>CONNECTED DEVICE INFO: HUMIDITY SENSOR
-Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>TEMP SENSOR 28 SAT DEC 30 13:08:20 TRT 2023
-Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
-INFO: Application exiting...
-Dec 30, 2023 1:08:20 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>HUMIDITY SENSOR ALIVE SAT DEC 30 13:08:20 TRT 2023
-Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>GET LAST TEMP TIME
-Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
-INFO: TEMP SENSOR SAT DEC 30 13:08:20 TRT 2023
-Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
-INFO: temp timestamp coming from the server: TEMP SENSOR SAT DEC 30 13:08:20 TRT 2023
-Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
-INFO: TEMP SENSOR OFF at SAT DEC 30 13:08:23 TRT 2023
-Dec 30, 2023 1:08:23 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>TEMP SENSOR OFF at SAT DEC 30 13:08:23 TRT 2023
-Dec 30, 2023 1:08:24 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>TEMP SENSOR 23 SAT DEC 30 13:08:24 TRT 2023
-Dec 30, 2023 1:08:26 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>HUMIDITY SENSOR 84 SAT DEC 30 13:08:26 TRT 2023
-Dec 30, 2023 1:08:26 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>GET LAST TEMP TIME
-Dec 30, 2023 1:08:26 PM main.java.AdvancedLogger logInfo
-INFO: TEMP SENSOR SAT DEC 30 13:08:24 TRT 2023
-Dec 30, 2023 1:08:26 PM main.java.AdvancedLogger logInfo
-INFO: temp timestamp coming from the server: TEMP SENSOR SAT DEC 30 13:08:24 TRT 2023
-Dec 30, 2023 1:08:27 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>GET LAST ALIVE TIME
-Dec 30, 2023 1:08:27 PM main.java.AdvancedLogger logInfo
-INFO: HUMIDITY SENSOR SAT DEC 30 13:08:20 TRT 2023
-Dec 30, 2023 1:08:27 PM main.java.AdvancedLogger logInfo
-INFO: temp timestamp coming from the server: HUMIDITY SENSOR SAT DEC 30 13:08:20 TRT 2023
-Dec 30, 2023 1:08:27 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>HUMIDITY SENSOR OFF at SAT DEC 30 13:08:27 TRT 2023
-Dec 30, 2023 1:08:28 PM main.java.AdvancedLogger logInfo
-INFO: TEMP SENSOR 25 SAT DEC 30 13:08:28 TRT 2023
-Dec 30, 2023 1:08:28 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>TEMP SENSOR 25 SAT DEC 30 13:08:28 TRT 2023
-Dec 30, 2023 1:08:28 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>HUMIDITY SENSOR ALIVE SAT DEC 30 13:08:28 TRT 2023
-Dec 30, 2023 1:08:29 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>HUMIDITY SENSOR 88 SAT DEC 30 13:08:29 TRT 2023
-Dec 30, 2023 1:08:29 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>GET LAST TEMP TIME
-Dec 30, 2023 1:08:29 PM main.java.AdvancedLogger logInfo
-INFO: TEMP SENSOR SAT DEC 30 13:08:28 TRT 2023
-Dec 30, 2023 1:08:29 PM main.java.AdvancedLogger logInfo
-INFO: temp timestamp coming from the server: TEMP SENSOR SAT DEC 30 13:08:28 TRT 2023
-Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>GET LAST TEMP TIME
-Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
-INFO: TEMP SENSOR SAT DEC 30 13:08:28 TRT 2023
-Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>TEMP SENSOR 27 SAT DEC 30 13:08:32 TRT 2023
-Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
-INFO: temp timestamp coming from the server: TEMP SENSOR SAT DEC 30 13:08:28 TRT 2023
-Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
-INFO: TEMP SENSOR OFF at SAT DEC 30 13:08:32 TRT 2023
-Dec 30, 2023 1:08:32 PM main.java.AdvancedLogger logInfo
-INFO: gateway signal to server ===>TEMP SENSOR OFF at SAT DEC 30 13:08:32 TRT 2023
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-12-30T14:37:26.617079500Z</date>
+  <millis>1703947046617</millis>
+  <nanos>79500</nanos>
+  <sequence>1</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Logger initialized successfully.</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:26.620079600Z</date>
+  <millis>1703947046620</millis>
+  <nanos>79600</nanos>
+  <sequence>2</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Application starting...</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:27.635742500Z</date>
+  <millis>1703947047635</millis>
+  <nanos>742500</nanos>
+  <sequence>3</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Server up&amp;running on port 5000</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:27.635742500Z</date>
+  <millis>1703947047635</millis>
+  <nanos>742500</nanos>
+  <sequence>4</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Server is waiting for a Client....</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:28.643590200Z</date>
+  <millis>1703947048643</millis>
+  <nanos>590200</nanos>
+  <sequence>5</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Gateway waiting for TCP Sensor Client on port 4445</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:29.657474Z</date>
+  <millis>1703947049657</millis>
+  <nanos>474000</nanos>
+  <sequence>6</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Temperature Sensor is connected to the gateway on port 4445</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:30.674585100Z</date>
+  <millis>1703947050674</millis>
+  <nanos>585100</nanos>
+  <sequence>7</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Gateway UDP socket is up&amp;running on port 3334</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:31.683633500Z</date>
+  <millis>1703947051683</millis>
+  <nanos>633500</nanos>
+  <sequence>8</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Humidity sensor udp socket is ready on port 3334</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:32.697314300Z</date>
+  <millis>1703947052697</millis>
+  <nanos>314300</nanos>
+  <sequence>9</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>1</thread>
+  <message>Gateway is connected to the server on port 5000</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:32.712515100Z</date>
+  <millis>1703947052712</millis>
+  <nanos>515100</nanos>
+  <sequence>10</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>39</thread>
+  <message>CONNECTED DEVICE TEMP SENSOR</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:32.713517700Z</date>
+  <millis>1703947052713</millis>
+  <nanos>517700</nanos>
+  <sequence>11</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>40</thread>
+  <message>CONNECTED DEVICE HUMIDITY SENSOR</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:33.728345300Z</date>
+  <millis>1703947053728</millis>
+  <nanos>345300</nanos>
+  <sequence>12</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>39</thread>
+  <message>TEMP SENSOR 25 SAT DEC 30 17:37:33 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:33.730344800Z</date>
+  <millis>1703947053730</millis>
+  <nanos>344800</nanos>
+  <sequence>13</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>40</thread>
+  <message>HUMIDITY SENSOR ALIVE SAT DEC 30 17:37:33 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:34.734337400Z</date>
+  <millis>1703947054734</millis>
+  <nanos>337400</nanos>
+  <sequence>14</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>40</thread>
+  <message>HUMIDITY SENSOR 85 SAT DEC 30 17:37:34 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:36.755214100Z</date>
+  <millis>1703947056755</millis>
+  <nanos>214100</nanos>
+  <sequence>15</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>48</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:37.729715800Z</date>
+  <millis>1703947057729</millis>
+  <nanos>715800</nanos>
+  <sequence>16</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>39</thread>
+  <message>TEMP SENSOR 20 SAT DEC 30 17:37:37 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:40.746578200Z</date>
+  <millis>1703947060746</millis>
+  <nanos>578200</nanos>
+  <sequence>17</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>48</thread>
+  <message>HUMIDITY SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:40.748578200Z</date>
+  <millis>1703947060748</millis>
+  <nanos>578200</nanos>
+  <sequence>18</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>48</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:41.743046200Z</date>
+  <millis>1703947061743</millis>
+  <nanos>46200</nanos>
+  <sequence>19</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>40</thread>
+  <message>HUMIDITY SENSOR ALIVE SAT DEC 30 17:37:41 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:41.744558800Z</date>
+  <millis>1703947061744</millis>
+  <nanos>558800</nanos>
+  <sequence>20</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>43</thread>
+  <message>TEMP SENSOR 26 SAT DEC 30 17:37:41 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:44.753344200Z</date>
+  <millis>1703947064753</millis>
+  <nanos>344200</nanos>
+  <sequence>21</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>48</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:45.743605800Z</date>
+  <millis>1703947065743</millis>
+  <nanos>605800</nanos>
+  <sequence>22</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>39</thread>
+  <message>TEMP SENSOR 21 SAT DEC 30 17:37:45 TRT 2023</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:48.739397600Z</date>
+  <millis>1703947068739</millis>
+  <nanos>397600</nanos>
+  <sequence>23</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>48</thread>
+  <message>TEMP SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:48.754804700Z</date>
+  <millis>1703947068754</millis>
+  <nanos>804700</nanos>
+  <sequence>24</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>48</thread>
+  <message>HUMIDITY SENSOR OFF</message>
+</record>
+<record>
+  <date>2023-12-30T14:37:49.735638100Z</date>
+  <millis>1703947069735</millis>
+  <nanos>638100</nanos>
+  <sequence>25</sequence>
+  <logger>main.java.AdvancedLogger</logger>
+  <level>INFO</level>
+  <class>main.java.AdvancedLogger</class>
+  <method>logInfo</method>
+  <thread>43</thread>
+  <message>TEMP SENSOR 24 SAT DEC 30 17:37:49 TRT 2023</message>
+</record>
+</log>

@@ -34,32 +34,44 @@ public class ServerCommunicationHandler extends Thread{
             while (true) {
                 try {
                     msg = in.readUTF();
-                    logInfo("gateway signal to server ===>" + msg);
 
                     String[] msgElements = msg.split(" ");
 
-                    if(!msgElements[2].equals("INFO:")) {
+                    if(!msgElements[1].equals("DEVICE")) {
 
                         if (msgElements[0].equals("GET") && msgElements[2].equals("TEMP")) {
                             var timeStampArr = server.getTempMsgTimeStamp();
                             if (timeStampArr.size() == 0) {
-                                logInfo("TEMP SENSOR VALUE NOT FOUND");
-                                out.writeUTF("TEMP SENSOR VALUE NOT FOUND");
+                                if(server.isTempSensorOff()){
+                                    out.writeUTF("TEMP SENSOR OFF VALUE NOT FOUND");
+                                }else{
+                                    out.writeUTF("TEMP SENSOR VALUE NOT FOUND");
+                                }
                             } else {
                                 var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
-                                logInfo("TEMP SENSOR " + timeStamp.toUpperCase());
-                                out.writeUTF("TEMP SENSOR " + timeStamp.toUpperCase());
+                                if(server.isTempSensorOff()){
+                                    out.writeUTF("TEMP SENSOR OFF " + timeStamp.toUpperCase());
+
+                                }else{
+                                    out.writeUTF("TEMP SENSOR " + timeStamp.toUpperCase());
+                                }
                             }
 
                         } else if (msgElements[0].equals("GET") && msgElements[2].equals("ALIVE")) {
                             var timeStampArr = server.getAliveMsgTimeStamp();
                             if (timeStampArr.size() == 0) {
-                                logInfo("HUMIDITY SENSOR VALUE NOT FOUND");
-                                out.writeUTF("HUMIDITY SENSOR VALUE NOT FOUND");
+                                if(server.isHumiditySensorOff()){
+                                    out.writeUTF("HUMIDITY SENSOR OFF VALUE NOT FOUND");
+                                }else {
+                                    out.writeUTF("HUMIDITY SENSOR VALUE NOT FOUND");
+                                }
                             } else {
                                 var timeStamp = String.valueOf(timeStampArr.get(timeStampArr.size() - 1));
-                                logInfo("HUMIDITY SENSOR " + timeStamp.toUpperCase());
-                                out.writeUTF("HUMIDITY SENSOR " + timeStamp.toUpperCase());
+                                if(server.isHumiditySensorOff()){
+                                    out.writeUTF("HUMIDITY SENSOR OFF " + timeStamp.toUpperCase());
+                                }else {
+                                    out.writeUTF("HUMIDITY SENSOR " + timeStamp.toUpperCase());
+                                }
                             }
 
                         } else if (msgElements[0].equals("TEMP") && msgElements[2].equals("OFF")) {
@@ -75,14 +87,14 @@ public class ServerCommunicationHandler extends Thread{
                 }
                 catch(IOException i) {
                     logException(i);
-                    System.out.println(i);
+                    throw new RuntimeException();
                 }
             }
 
         }
         catch(IOException i) {
             logException(i);
-            System.out.println(i);
+            throw new RuntimeException();
         }
     }
 }

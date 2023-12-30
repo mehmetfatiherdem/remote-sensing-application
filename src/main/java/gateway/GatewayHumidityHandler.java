@@ -43,7 +43,9 @@ public class GatewayHumidityHandler extends Thread {
 
                 }
 
-                serverOut.writeUTF(Helpers.ByteToStr(buf).toString());
+                String str = Helpers.ByteToStr(buf).toString();
+
+                serverOut.writeUTF(str);
 
 
                 buf = new byte[65535];
